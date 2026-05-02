@@ -1,344 +1,47 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROUSAN JR</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Welcome To My World</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- MIRROR INTRO -->
-<div id="intro">
+<header class="navbar">
+    <div class="logo">KRAFTON</div>
 
-    <div class="mirror-world">
-        <div class="glass glass1"></div>
-        <div class="glass glass2"></div>
-        <div class="glass glass3"></div>
-        <div class="glass glass4"></div>
-
-        <h1 class="intro-text">ENTER THE MIRROR WORLD</h1>
+    <div class="right-nav">
+        <span class="menu-text">menu</span>
+        <div class="hamburger" id="menuBtn">
+            <span></span>
+            <span></span>
+        </div>
     </div>
-
-</div>
-
-<!-- WEBSITE -->
-<div id="site">
-
-<header class="header">
-    <div class="logo">ROUSAN</div>
-
-    <button class="menu-btn" id="menuBtn">
-        menu ☰
-    </button>
 </header>
 
-<!-- MENU -->
-<div class="overlay" id="overlay"></div>
-
-<nav class="side-menu" id="sideMenu">
-
-    <button class="close-btn" id="closeBtn">×</button>
-
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">About</a></li>
-
-        <li>
-            <a href="https://instagram.com/your_username" target="_blank" class="insta-link">
-                <svg viewBox="0 0 24 24">
-                    <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.5 5.5 0 0 0 12 7.5zm0 2A3.5 3.5 0 1 1 8.5 13 3.5 3.5 0 0 1 12 9.5z"/>
-                </svg>
-                Instagram
-            </a>
-        </li>
-    </ul>
-
-</nav>
-
 <section class="hero">
 
-<div class="red-line line1"></div>
-<div class="red-line line2"></div>
-<div class="red-line line3"></div>
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <div class="glow glow3"></div>
 
-<div class="content">
-
-<h1 class="glitch" data-text="PIONEER THE UNDISCOVERED">
-PIONEER<br>
-THE<br>
-UNDISCO-<br>
-VERED
-</h1>
-
-<p>
-WE PIONEER THE PATH TO PLAYERS DREAMS.<br>
-WITH BOLD IMAGINATION AND BREAKTHROUGH TECHNOLOGY,<br>
-WE CREATE UNFORGETTABLE WORLDS FOR FANS ACROSS THE GLOBE.
-</p>
-
-</div>
-
-<div class="arrow">↓</div>
-
-</section>
-
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>        menu ☰
-    </button>
-</header>
-
-<!-- MENU -->
-<div class="overlay" id="overlay"></div>
-
-<nav class="side-menu" id="sideMenu">
-
-    <button class="close-btn" id="closeBtn">×</button>
-
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">About</a></li>
-
-        <li>
-            <a href="https://instagram.com/your_username" target="_blank" class="insta-link">
-                <svg viewBox="0 0 24 24">
-                    <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.5 5.5 0 0 0 12 7.5zm0 2A3.5 3.5 0 1 1 8.5 13 3.5 3.5 0 0 1 12 9.5z"/>
-                </svg>
-                Instagram
-            </a>
-        </li>
-    </ul>
-
-</nav>
-
-<section class="hero">
-
-<div class="red-line line1"></div>
-<div class="red-line line2"></div>
-<div class="red-line line3"></div>
-
-<div class="content">
-
-<h1 class="glitch" data-text="PIONEER THE UNDISCOVERED">
-PIONEER<br>
-THE<br>
-UNDISCO-<br>
-VERED
-</h1>
-
-<p>
-WE PIONEER THE PATH TO PLAYERS DREAMS.<br>
-WITH BOLD IMAGINATION AND BREAKTHROUGH TECHNOLOGY,<br>
-WE CREATE UNFORGETTABLE WORLDS FOR FANS ACROSS THE GLOBE.
-</p>
-
-</div>
-
-<div class="arrow">↓</div>
-
-</section>
-
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>font-size:clamp(30px,6vw,80px);
-font-weight:900;
-color:#fff;
-letter-spacing:4px;
-animation:flash 1s infinite;
-z-index:10;
-text-align:center;
-}
-
-@keyframes flash{
-0%,100%{opacity:1;}
-50%{opacity:.3;}
-}
-
-.glass{
-position:absolute;
-width:220px;
-height:220px;
-border:1px solid rgba(255,255,255,.2);
-backdrop-filter:blur(8px);
-transform:rotate(45deg);
-animation:spin 8s linear infinite;
-}
-
-.glass1{top:15%;left:15%;}
-.glass2{top:25%;right:18%;}
-.glass3{bottom:18%;left:20%;}
-.glass4{bottom:15%;right:15%;}
-
-@keyframes spin{
-from{transform:rotate(0deg);}
-to{transform:rotate(360deg);}
-}
-
-/* WEBSITE */
-#site{
-opacity:0;
-transform:scale(1.2);
-transition:1.2s;
-}
-
-/* HEADER */
-.header{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-padding:25px 35px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-z-index:1000;
-}
-
-.logo{
-font-size:38px;
-font-weight:900;
-}
-
-.menu-btn{
-background:none;
-border:none;
-color:#fff;
-font-size:28px;
-font-weight:700;
-cursor:pointer;
-}
-
-/* MENU */
-.overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.7);
-opacity:0;
-visibility:hidden;
-transition:.4s;
-z-index:1100;
-}
-
-.overlay.show{
-opacity:1;
-visibility:visible;
-}
-
-.side-menu{
-position:fixed;
-top:0;
-right:-320px;
-width:320px;
-height:100vh;
-background:#050505;
-padding:90px 35px;
-transition:.5s;
-z-index:1200;
-}
-
-.side-menu.show{
-right:0;
-}
-
-.close-btn{
-position:absolute;
-top:20px;
-right:25px;
-background:none;
-border:none;
-color:#ff3131;
-font-size:42px;
-cursor:pointer;
-}
-
-.side-menu ul{
-list-style:none;
-}
-
-.side-menu li{
-margin
-        <li>
-            <a href="https://instagram.com/your_username" target="_blank" class="insta-link">
-                <svg viewBox="0 0 24 24">
-                    <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.5 5.5 0 0 0 12 7.5zm0 2A3.5 3.5 0 1 1 8.5 13 3.5 3.5 0 0 1 12 9.5zm5.8-3.3a1.2 1.2 0 1 0 1.2 1.2 1.2 1.2 0 0 0-1.2-1.2z"/>
-                </svg>
-                Instagram
-            </a>
-        </li>
-    </ul>
-
-</nav>
-
-<section class="hero">
     <div class="content">
-
-        <h1 class="glitch" data-text="WELCOME TO MY WORLD">
-            <span>WELCOME</span>
-            <span>TO MY</span>
-            <span>WORLD</span>
+        <h1>
+            WELCOME<br>
+            TO MY<br>
+            WORLD
         </h1>
 
         <p>
-            I CREATE MODERN DIGITAL EXPERIENCES WITH BOLD DESIGN,
-            CREATIVE IDEAS AND POWERFUL WEB TECHNOLOGY.
+            WE PIONEER THE PATH TO PLAYERS DREAMS.<br>
+            WITH BOLD IMAGINATION AND BREAKTHROUGH TECHNOLOGY,<br>
+            WE CREATE UNFORGETTABLE WORLDS FOR FANS ACROSS THE GLOBE.
         </p>
-
     </div>
 
-    <div class="arrow">↓</div>
-</section>
-
-<script src="script.js"></script>
-</body>
-</html>
-        <li>
-            <a href="https://instagram.com/rousan_jr_" target="_blank" class="insta-link">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.5 5.5 0 0 0 12 7.5zm0 2A3.5 3.5 0 1 1 8.5 13 3.5 3.5 0 0 1 12 9.5zm5.8-3.3a1.2 1.2 0 1 0 1.2 1.2 1.2 1.2 0 0 0-1.2-1.2z"/>
-                </svg>
-                Instagram
-            </a>
-        </li>
-    </ul>
-
-</nav>
-
-<section class="hero">
-    <div class="content">
-
-        <h1 class="glitch" data-text="WELCOME TO MY WORLD">
-            <span>WELCOME</span>
-            <span>TO MY</span>
-            <span>WORLD</span>
-        </h1>
-
-        <p>
-            I CREATE MODERN DIGITAL EXPERIENCES WITH BOLD DESIGN,
-            CREATIVE IDEAS AND POWERFUL WEB TECHNOLOGY.
-        </p>
-
-    </div>
-
-    <div class="arrow">↓</div>
-</section>
-
-<script src="script.js"></script>
-</body>
-</html>    </div>
-
-    <div class="arrow">↓</div>
+    <div class="scroll-down">&#8595;</div>
 </section>
 
 <script src="script.js"></script>
