@@ -47,6 +47,205 @@ header{
     font-weight:700;
     cursor:pointer;
     color:#fff;
+}
+
+/* Hero */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:120px 40px;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before,
+.hero::after{
+    content:'';
+    position:absolute;
+    width:900px;
+    height:4px;
+    background:linear-gradient(90deg,transparent,#ff2b2b,transparent);
+    box-shadow:0 0 20px #ff2b2b;
+    transform:rotate(45deg);
+}
+
+.hero::before{
+    top:20%;
+    left:-20%;
+}
+
+.hero::after{
+    bottom:10%;
+    right:-20%;
+}
+
+/* Content */
+.content{
+    position:relative;
+    z-index:2;
+    max-width:900px;
+}
+
+/* GLITCH TEXT */
+.glitch{
+    position:relative;
+    font-size:clamp(50px,10vw,130px);
+    line-height:0.9;
+    color:#ff2b2b;
+    font-weight:900;
+    text-transform:uppercase;
+    margin-bottom:20px;
+    animation:glitchMain 2s infinite;
+}
+
+.glitch::before,
+.glitch::after{
+    content:attr(data-text);
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    overflow:hidden;
+}
+
+.glitch::before{
+    color:#00fff9;
+    z-index:-1;
+    animation:glitchTop 1.2s infinite linear alternate-reverse;
+}
+
+.glitch::after{
+    color:#ff00c8;
+    z-index:-2;
+    animation:glitchBottom 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitchMain{
+    0%,100%{transform:translate(0);}
+    20%{transform:translate(-2px,2px);}
+    40%{transform:translate(2px,-2px);}
+    60%{transform:translate(-1px,1px);}
+    80%{transform:translate(1px,-1px);}
+}
+
+@keyframes glitchTop{
+    0%{
+        clip-path:inset(0 0 80% 0);
+        transform:translate(-3px,-2px);
+    }
+    25%{
+        clip-path:inset(10% 0 55% 0);
+        transform:translate(3px,2px);
+    }
+    50%{
+        clip-path:inset(40% 0 30% 0);
+        transform:translate(-2px,1px);
+    }
+    75%{
+        clip-path:inset(65% 0 10% 0);
+        transform:translate(2px,-1px);
+    }
+    100%{
+        clip-path:inset(85% 0 0 0);
+        transform:translate(-1px,2px);
+    }
+}
+
+@keyframes glitchBottom{
+    0%{
+        clip-path:inset(80% 0 0 0);
+        transform:translate(3px,2px);
+    }
+    25%{
+        clip-path:inset(55% 0 10% 0);
+        transform:translate(-3px,-2px);
+    }
+    50%{
+        clip-path:inset(30% 0 40% 0);
+        transform:translate(2px,-1px);
+    }
+    75%{
+        clip-path:inset(10% 0 65% 0);
+        transform:translate(-2px,1px);
+    }
+    100%{
+        clip-path:inset(0 0 85% 0);
+        transform:translate(1px,-2px);
+    }
+}
+
+.content p{
+    font-size:15px;
+    max-width:650px;
+    color:#ddd;
+    letter-spacing:1px;
+    line-height:1.6;
+}
+
+/* Arrow */
+.arrow{
+    position:absolute;
+    bottom:40px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:50px;
+    animation:updown 1.5s infinite;
+}
+
+@keyframes updown{
+    0%,100%{transform:translate(-50%,0);}
+    50%{transform:translate(-50%,10px);}
+}
+
+/* Mobile */
+@media(max-width:768px){
+    header{padding:20px;}
+    .logo{font-size:24px;}
+    .menu-btn{font-size:20px;}
+    .content p{font-size:12px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">ROUSAN JR</div>
+    <div class="menu-btn">menu ☰</div>
+</header>
+
+<section class="hero">
+    <div class="content">
+
+        <h1 class="glitch" data-text="WELCOME TO MY WORLD">
+            WELCOME<br>TO MY<br>WORLD
+        </h1>
+
+        <p>
+            I CREATE MODERN DIGITAL EXPERIENCES WITH BOLD DESIGN,
+            CREATIVE IDEAS AND POWERFUL WEB TECHNOLOGY.
+        </p>
+
+    </div>
+
+    <div class="arrow">↓</div>
+</section>
+
+</body>
+</html>}
+
+.logo{
+    font-size:32px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.menu-btn{
+    font-size:24px;
+    font-weight:700;
+    cursor:pointer;
+    color:#fff;
     user-select:none;
 }
 
