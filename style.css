@@ -26,7 +26,7 @@ body{
     top:0;
     left:0;
     z-index:1000;
-    background:rgba(0,0,0,0.45);
+    background:rgba(0,0,0,.45);
     backdrop-filter:blur(8px);
 }
 
@@ -35,6 +35,263 @@ body{
     font-weight:900;
     letter-spacing:2px;
 }
+
+.menu-btn,
+.close-btn{
+    border:none;
+    background:transparent;
+    color:#fff;
+    cursor:pointer;
+    font-family:'Montserrat',sans-serif;
+}
+
+.menu-btn{
+    font-size:24px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.menu-btn:hover{
+    color:#ff2b2b;
+}
+
+/* Overlay */
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    opacity:0;
+    visibility:hidden;
+    transition:.4s;
+    z-index:1200;
+}
+
+.overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+/* Side Menu */
+.side-menu{
+    position:fixed;
+    top:0;
+    right:-340px;
+    width:320px;
+    height:100vh;
+    background:rgba(10,10,10,.95);
+    backdrop-filter:blur(15px);
+    padding:90px 35px;
+    z-index:1300;
+    transition:.5s ease;
+    box-shadow:-10px 0 30px rgba(255,43,43,.18);
+}
+
+.side-menu.active{
+    right:0;
+}
+
+.close-btn{
+    position:absolute;
+    top:18px;
+    right:24px;
+    font-size:42px;
+    color:#ff2b2b;
+}
+
+.side-menu ul{
+    list-style:none;
+}
+
+.side-menu li{
+    margin:28px 0;
+    transform:translateX(40px);
+    opacity:0;
+    transition:.45s ease;
+}
+
+.side-menu.active li{
+    transform:translateX(0);
+    opacity:1;
+}
+
+.side-menu.active li:nth-child(1){transition-delay:.08s;}
+.side-menu.active li:nth-child(2){transition-delay:.16s;}
+.side-menu.active li:nth-child(3){transition-delay:.24s;}
+.side-menu.active li:nth-child(4){transition-delay:.32s;}
+
+.side-menu a{
+    text-decoration:none;
+    color:#fff;
+    font-size:24px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.side-menu a:hover{
+    color:#ff2b2b;
+    padding-left:8px;
+}
+
+.insta-link{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.insta-link svg{
+    width:26px;
+    height:26px;
+    fill:#ff2b2b;
+}
+
+/* Hero */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:120px 40px;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before,
+.hero::after{
+    content:'';
+    position:absolute;
+    width:900px;
+    height:4px;
+    background:linear-gradient(90deg,transparent,#ff2b2b,transparent);
+    box-shadow:0 0 20px #ff2b2b;
+    transform:rotate(45deg);
+}
+
+.hero::before{
+    top:20%;
+    left:-20%;
+}
+
+.hero::after{
+    bottom:10%;
+    right:-20%;
+}
+
+.content{
+    position:relative;
+    z-index:2;
+    max-width:900px;
+}
+
+/* Glitch */
+.glitch{
+    position:relative;
+    display:inline-block;
+    font-size:clamp(50px,10vw,130px);
+    line-height:.9;
+    color:#ff2b2b;
+    font-weight:900;
+    text-transform:uppercase;
+    margin-bottom:20px;
+    animation:glitchMain 2.5s infinite;
+}
+
+.glitch span{
+    display:block;
+}
+
+.glitch::before,
+.glitch::after{
+    content:attr(data-text);
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    white-space:pre-line;
+}
+
+.glitch::before{
+    color:#00fff9;
+    opacity:.7;
+    z-index:-1;
+    animation:glitchTop 1.6s infinite;
+}
+
+.glitch::after{
+    color:#ff00c8;
+    opacity:.7;
+    z-index:-2;
+    animation:glitchBottom 1.2s infinite;
+}
+
+@keyframes glitchMain{
+    0%,100%{transform:translate(0);}
+    20%{transform:translate(-2px,1px);}
+    40%{transform:translate(2px,-1px);}
+    60%{transform:translate(-1px,2px);}
+    80%{transform:translate(1px,-2px);}
+}
+
+@keyframes glitchTop{
+    0%,100%{transform:translate(0);}
+    50%{transform:translate(-4px,-2px);}
+}
+
+@keyframes glitchBottom{
+    0%,100%{transform:translate(0);}
+    50%{transform:translate(4px,2px);}
+}
+
+.content p{
+    font-size:15px;
+    max-width:650px;
+    color:#ddd;
+    letter-spacing:1px;
+    line-height:1.7;
+}
+
+/* Arrow */
+.arrow{
+    position:absolute;
+    bottom:40px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:50px;
+    animation:updown 1.5s infinite;
+}
+
+@keyframes updown{
+    0%,100%{transform:translate(-50%,0);}
+    50%{transform:translate(-50%,10px);}
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+    .header{
+        padding:20px;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .menu-btn{
+        font-size:20px;
+    }
+
+    .side-menu{
+        width:100%;
+        right:-100%;
+    }
+
+    .content p{
+        font-size:12px;
+    }
+
+    .arrow{
+        font-size:38px;
+    }
+}}
 
 .menu-btn{
     border:none;
