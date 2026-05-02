@@ -1,40 +1,18 @@
-// Wait until page loads
-document.addEventListener("DOMContentLoaded", () => {
+// script.js
 
-    // Smooth scroll when arrow clicked
-    const arrow = document.querySelector(".arrow");
+console.log("Website Loaded Successfully");
 
-    if (arrow) {
-        arrow.addEventListener("click", () => {
-            window.scrollTo({
-                top: window.innerHeight,
-                behavior: "smooth"
-            });
-        });
-    }
+/* Random Extra Glitch Burst */
+const glitch = document.querySelector(".glitch");
 
-    // Header background on scroll
-    const header = document.querySelector("header");
+setInterval(()=>{
+    glitch.style.transform = "skew(5deg)";
+    
+    setTimeout(()=>{
+        glitch.style.transform = "skew(0deg)";
+    },120);
 
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            header.style.background = "rgba(0,0,0,0.75)";
-            header.style.backdropFilter = "blur(10px)";
-        } else {
-            header.style.background = "rgba(0,0,0,0.35)";
-            header.style.backdropFilter = "blur(8px)";
-        }
-    });
-
-    // Text reveal animation
-    const title = document.querySelector(".content h1");
-
-    if (title) {
-        title.style.opacity = "0";
-        title.style.transform = "translateY(40px)";
-
-        setTimeout(() => {
-            title.style.transition = "all 1.2s ease";
+},3000);            title.style.transition = "all 1.2s ease";
             title.style.opacity = "1";
             title.style.transform = "translateY(0)";
         }, 300);
