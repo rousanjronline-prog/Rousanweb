@@ -1,40 +1,58 @@
-/* Google Font Import */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+// Wait until page loads
+document.addEventListener("DOMContentLoaded", () => {
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    // Smooth scroll when arrow clicked
+    const arrow = document.querySelector(".arrow");
 
-body{
-    font-family:'Montserrat', sans-serif;
-    background:#000;
-    color:#fff;
-    overflow-x:hidden;
-}
+    if (arrow) {
+        arrow.addEventListener("click", () => {
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: "smooth"
+            });
+        });
+    }
 
-/* Header */
-header{
-    width:100%;
-    padding:25px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:1000;
-    background:rgba(0,0,0,0.35);
-    backdrop-filter:blur(8px);
-}
+    // Header background on scroll
+    const header = document.querySelector("header");
 
-.logo{
-    font-size:32px;
-    font-weight:900;
-    letter-spacing:2px;
-    text-transform:uppercase;
-}
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            header.style.background = "rgba(0,0,0,0.75)";
+            header.style.backdropFilter = "blur(10px)";
+        } else {
+            header.style.background = "rgba(0,0,0,0.35)";
+            header.style.backdropFilter = "blur(8px)";
+        }
+    });
+
+    // Text reveal animation
+    const title = document.querySelector(".content h1");
+
+    if (title) {
+        title.style.opacity = "0";
+        title.style.transform = "translateY(40px)";
+
+        setTimeout(() => {
+            title.style.transition = "all 1.2s ease";
+            title.style.opacity = "1";
+            title.style.transform = "translateY(0)";
+        }, 300);
+    }
+
+    // Paragraph reveal animation
+    const text = document.querySelector(".content p");
+
+    if (text) {
+        text.style.opacity = "0";
+
+        setTimeout(() => {
+            text.style.transition = "all 1.5s ease";
+            text.style.opacity = "1";
+        }, 900);
+    }
+
+});}
 
 .menu{
     font-size:24px;
