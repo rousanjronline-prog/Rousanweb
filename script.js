@@ -1,40 +1,46 @@
-// script.js
+document.addEventListener("DOMContentLoaded", () => {
 
-console.log("Website Loaded Successfully");
+    const menuBtn  = document.getElementById("menuBtn");
+    const closeBtn = document.getElementById("closeBtn");
+    const sideMenu = document.getElementById("sideMenu");
+    const overlay  = document.getElementById("overlay");
+    const glitch   = document.querySelector(".glitch");
 
-/* Random Extra Glitch Burst */
-const glitch = document.querySelector(".glitch");
-
-setInterval(()=>{
-    glitch.style.transform = "skew(5deg)";
-    
-    setTimeout(()=>{
-        glitch.style.transform = "skew(0deg)";
-    },120);
-
-},3000);            title.style.transition = "all 1.2s ease";
-            title.style.opacity = "1";
-            title.style.transform = "translateY(0)";
-        }, 300);
+    function openMenu(){
+        sideMenu.classList.add("active");
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
     }
 
-    // Paragraph reveal animation
-    const text = document.querySelector(".content p");
-
-    if (text) {
-        text.style.opacity = "0";
-
-        setTimeout(() => {
-            text.style.transition = "all 1.5s ease";
-            text.style.opacity = "1";
-        }, 900);
+    function closeMenu(){
+        sideMenu.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
     }
 
-});}
+    menuBtn.addEventListener("click", openMenu);
+    closeBtn.addEventListener("click", closeMenu);
+    overlay.addEventListener("click", closeMenu);
 
-.menu{
-    font-size:24px;
-    font-weight:700;
+    document.addEventListener("keydown", (e) => {
+        if(e.key === "Escape"){
+            closeMenu();
+        }
+    });
+
+    /* Extra glitch burst */
+    if(glitch){
+        setInterval(() => {
+            glitch.style.transform = "skew(4deg) scale(1.01)";
+
+            setTimeout(() => {
+                glitch.style.transform = "";
+            }, 120);
+
+        }, 3000);
+    }
+
+});    font-weight:700;
     cursor:pointer;
     text-transform:lowercase;
 }
