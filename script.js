@@ -1,6 +1,8 @@
 const menuBtn=document.getElementById('menuBtn');
+const closeBtn=document.getElementById('closeBtn');
 const menuPanel=document.getElementById('menuPanel');
-menuBtn.onclick=()=>menuPanel.classList.toggle('show');
+menuBtn.onclick=()=>menuPanel.classList.add('show');
+closeBtn.onclick=()=>menuPanel.classList.remove('show');
 window.addEventListener('mousemove',e=>{
  const x=(e.clientX/window.innerWidth-.5)*20;
  const y=(e.clientY/window.innerHeight-.5)*20;
