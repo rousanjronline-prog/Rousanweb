@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome To My World | Premium Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome To My World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-    <div id="loader">
-        <div class="loader-text">INITIALIZING...</div>
-        <div class="loader-bar"></div>
-    </div>
-
-    <div class="laser-container">
-        <div class="laser"></div>
-        <div class="laser"></div>
-    </div>
-
-    <nav>
-        <div class="logo">KRAFTON-STYLE</div>
-        <div class="menu-btn">
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
-
-    <main data-scroll-container>
-        <section class="hero" data-scroll-section>
-            <div class="hero-content">
-                <h1 class="glitch-text" data-text="WELCOME TO MY WORLD">
-                    WELCOME TO <br> <span>MY WORLD</span>
-                </h1>
-                <p class="sub-text">WE PIONEER THE PATH TO PLAYERS' DREAMS. <br> WITH BOLD IMAGINATION AND BREAKTHROUGH TECHNOLOGY.</p>
-                <div class="scroll-indicator">
+<div id="loader"><div class="spinner"></div><span>LOADING</span></div>
+<header class="navbar">
+  <div class="logo">KRAFTON</div>
+  <button class="menu-btn">menu <span></span><span></span></button>
+</header>
+<section class="hero">
+  <div class="laser laser1"></div><div class="laser laser2"></div>
+  <h1>WELCOME<br>TO MY<br>WORLD</h1>
+  <p>We create unforgettable worlds with bold imagination and premium digital experiences.</p>
+  <a href="#contact" class="scroll-down">↓</a>
+</section>
+<section class="glass cards">
+  <div class="card">Creative Design</div>
+  <div class="card">Smooth Motion</div>
+  <div class="card">Modern UI</div>
+</section>
+<section id="contact" class="glass contact">
+  <h2>Contact Me</h2>
+  <form>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea placeholder="Message"></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+<script src="script.js"></script>
+</body>
+</html>                <div class="scroll-indicator">
                     <div class="arrow"></div>
                 </div>
             </div>
