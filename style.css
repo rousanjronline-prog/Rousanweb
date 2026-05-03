@@ -1,40 +1,32 @@
 *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
-body{font-family:'Montserrat',sans-serif;background:#000;color:#fff;overflow-x:hidden;max-width:375px;min-width:360px;min-height:640px;max-height:812px;margin:auto}
-
-*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
-body{font-family:'Montserrat',sans-serif;background:#000;color:#fff;overflow-x:hidden}
-#loader{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;gap:15px}
-.spinner{width:70px;height:70px;border:3px solid #222;border-top:3px solid #ff2e2e;border-radius:50%;animation:spin 1s linear infinite;box-shadow:0 0 20px #ff2e2e}
+body{font-family:'Montserrat',sans-serif;background:#050505;color:#fff;overflow-x:hidden}
+#loader{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;gap:14px}
+.spinner{width:60px;height:60px;border:3px solid #333;border-top-color:#ff2a2a;border-radius:50%;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.navbar{position:fixed;top:0;width:100%;padding:20px 30px;display:flex;justify-content:space-between;align-items:center;z-index:99;background:rgba(0,0,0,.35);backdrop-filter:blur(10px)}
-.logo{font-size:2rem;font-weight:900;letter-spacing:2px}
-.menu-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;padding:12px 18px;border-radius:40px;display:flex;gap:8px;align-items:center;cursor:pointer;box-shadow:0 0 20px rgba(255,0,0,.35);transition:.3s}
-.menu-btn span{display:block;width:18px;height:2px;background:#ff4040;box-shadow:0 0 10px #ff4040}
-.menu-btn:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 0 30px rgba(255,0,0,.8)}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 8vw;position:relative}
-.hero h1{font-size:clamp(3rem,12vw,8rem);line-height:.9;color:#ff3b3b;text-shadow:0 0 25px rgba(255,50,50,.65)}
-.hero p{max-width:650px;margin-top:20px;color:#ddd;letter-spacing:1px}
-.scroll-down{margin-top:60px;font-size:3rem;color:#fff;text-decoration:none;animation:bounce 2s infinite}
-@keyframes bounce{50%{transform:translateY(10px)}}
-.laser{position:absolute;height:2px;background:linear-gradient(90deg,transparent,#ff2a2a,transparent);box-shadow:0 0 20px #ff2a2a;animation:moveLaser 6s linear infinite}
-.laser1{width:60%;top:35%;left:-20%;transform:rotate(-30deg)}
-.laser2{width:70%;bottom:18%;right:-20%;transform:rotate(-35deg);animation-delay:2s}
-@keyframes moveLaser{50%{transform:translateX(120px) rotate(-30deg)}100%{opacity:.5}}
-.glass{margin:40px auto;width:min(1100px,92%);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(16px);border-radius:24px;box-shadow:0 15px 40px rgba(0,0,0,.45);padding:30px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{padding:40px 20px;text-align:center;font-size:1.2rem;background:rgba(255,255,255,.03);border-radius:18px;transition:.35s}
-.card:hover{transform:translateY(-8px);box-shadow:0 15px 30px rgba(255,0,0,.2)}
-.contact h2{font-size:2rem;margin-bottom:20px}
-form{display:grid;gap:15px}.contact input,.contact textarea{width:100%;padding:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;color:#fff}
-textarea{min-height:140px;resize:vertical}
-form button{padding:14px;border:none;border-radius:14px;background:#ff3535;color:#fff;font-weight:800;cursor:pointer;transition:.3s;box-shadow:0 0 20px rgba(255,0,0,.4)}
-form button:hover{transform:translateY(-3px)}
-@media(max-width:375px){.cards{grid-template-columns:1fr}.navbar{padding:14px 16px}.logo{font-size:1.3rem}.hero{padding:82px 16px;min-height:640px}.hero h1{font-size:2.35rem;line-height:.95}.hero p{font-size:.78rem;margin-top:10px;max-width:260px}.menu-btn{padding:8px 12px;font-size:.75rem}.glass{width:92%;padding:12px;border-radius:16px}.card{padding:18px 10px;font-size:.88rem}.contact h2{font-size:1.25rem}.contact input,.contact textarea,form button{padding:11px;font-size:.85rem}.scroll-down{font-size:1.6rem;margin-top:18px}}    margin: 6px 0;
-    transition: 0.3s;
-    box-shadow: 0 0 8px var(--accent-red);
-}
-
-/* Laser Lines */
+.navbar{position:fixed;top:0;width:100%;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;z-index:50;background:rgba(0,0,0,.35);backdrop-filter:blur(12px)}
+.logo{font-weight:900;letter-spacing:2px;font-size:28px}
+.menu-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;padding:10px 16px;border-radius:40px;display:flex;align-items:center;gap:8px;box-shadow:0 0 20px rgba(255,0,0,.35);cursor:pointer}
+.menu-btn span{display:block;width:18px;height:2px;background:#ff3838;box-shadow:0 0 8px #ff3838}
+.mobile-menu{position:fixed;right:-100%;top:70px;width:220px;background:rgba(255,255,255,.08);backdrop-filter:blur(18px);padding:20px;border-radius:18px;transition:.4s;z-index:40}
+.mobile-menu.show{right:12px}.mobile-menu a{display:block;color:#fff;text-decoration:none;padding:12px 0}
+.hero{min-height:100vh;display:flex;align-items:center;padding:110px 24px 40px;position:relative;overflow:hidden}
+.hero-content{position:relative;z-index:2;max-width:700px}
+.hero h1{font-size:clamp(56px,15vw,130px);line-height:.9;color:#ff3434;font-weight:900;text-shadow:0 0 20px rgba(255,50,50,.4)}
+.hero p{margin:18px 0 28px;color:#ddd;max-width:500px}
+.cta{display:inline-block;padding:14px 26px;border-radius:40px;text-decoration:none;color:#fff;background:linear-gradient(90deg,#ff2a2a,#aa0000);box-shadow:0 15px 30px rgba(255,0,0,.25);transition:.3s}
+.cta:hover{transform:translateY(-4px) scale(1.03)}
+.laser{position:absolute;width:2px;height:140%;background:linear-gradient(transparent,#ff2a2a,transparent);filter:drop-shadow(0 0 12px #ff2a2a);opacity:.8;animation:move 8s linear infinite}
+.laser1{left:18%;transform:rotate(25deg)} .laser2{right:15%;transform:rotate(35deg);animation-delay:2s}
+@keyframes move{0%{translate:0 -20%}100%{translate:0 20%}}
+.glass{margin:20px; padding:28px; border-radius:28px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(14px);box-shadow:0 20px 40px rgba(0,0,0,.35);transition:.35s}
+.glass:hover{transform:translateY(-6px);box-shadow:0 25px 50px rgba(255,0,0,.18)}
+.glass h2{margin-bottom:12px}
+.contact form{display:grid;gap:14px;margin-top:18px}
+input,textarea{width:100%;padding:14px;border:none;border-radius:16px;background:rgba(255,255,255,.08);color:#fff}
+textarea{min-height:130px;resize:vertical}
+form button{padding:14px;border:none;border-radius:18px;background:#ff2a2a;color:#fff;font-weight:700;cursor:pointer;transition:.3s}
+form button:hover{transform:scale(1.02)}
+@media(max-width:600px){.logo{font-size:22px}.hero{padding-top:100px}.glass{margin:14px;padding:22px}}/* Laser Lines */
 .laser-container {
     position: fixed;
     top: 0; width: 100%; height: 100%;
