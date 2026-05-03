@@ -1,39 +1,44 @@
-const scene=new THREE.Scene();
-scene.fog=new THREE.Fog(0x87ceeb,20,180);
-const camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({antialias:true});
-renderer.setSize(innerWidth,innerHeight);
-document.body.appendChild(renderer.domElement);
+// Loading Animation
+window.addEventListener('load', () => {
+    const tl = gsap.timeline();
+    
+    tl.to(".loader-bar", { width: "100%", duration: 1 })
+      .to("#loader", { y: "-100%", duration: 0.8, ease: "power4.inOut" })
+      .from(".hero-content h1", { opacity: 0, y: 50, duration: 1, stagger: 0.2 })
+      .from("nav", { opacity: 0, duration: 1 }, "-=0.5");
+});
 
-const light=new THREE.DirectionalLight(0xffffff,1);
-light.position.set(5,10,7);
-scene.add(light);
-scene.add(new THREE.AmbientLight(0xffffff,0.6));
+// Scroll Hover effect on Menu
+const menuBtn = document.querySelector('.menu-btn');
+menuBtn.addEventListener('mouseenter', () => {
+    gsap.to(".menu-btn span", { backgroundColor: "#ff3c28", stagger: 0.1 });
+});
+menuBtn.addEventListener('mouseleave', () => {
+    gsap.to(".menu-btn span", { backgroundColor: "#ffffff", stagger: 0.1 });
+});
 
-const road=new THREE.Mesh(
- new THREE.BoxGeometry(12,0.1,400),
- new THREE.MeshPhongMaterial({color:0x333333})
-);
-road.position.z=150;
-scene.add(road);
+// Parallax/Smooth reveal using GSAP ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
-const lines=[];
-for(let i=0;i<30;i++){
- let l=new THREE.Mesh(new THREE.BoxGeometry(0.3,0.02,4),new THREE.MeshBasicMaterial({color:0xffffff}));
- l.position.set(0,0.06,i*15);
- scene.add(l); lines.push(l);
-}
+gsap.from(".glass-card", {
+    scrollTrigger: {
+        trigger: ".glass-card",
+        start: "top 80%",
+    },
+    opacity: 0,
+    y: 100,
+    duration: 1.2,
+    ease: "power3.out"
+});
 
-const player=new THREE.Mesh(
- new THREE.BoxGeometry(1.5,0.8,3),
- new THREE.MeshPhongMaterial({color:0x00ffff})
-);
-player.position.y=0.5;
-scene.add(player);
-
-const enemies=[];
-for(let i=0;i<8;i++){
- const e=new THREE.Mesh(new THREE.BoxGeometry(1.5,0.8,3),new THREE.MeshPhongMaterial({color:0xff2222}));
+// Floating animation for the scroll arrow
+gsap.to(".scroll-indicator", {
+    y: 20,
+    repeat: -1,
+    yoyo: true,
+    duration: 1.5,
+    ease: "sine.inOut"
+});
  e.position.set((Math.random()*8)-4,0.5,50+i*25);
  scene.add(e); enemies.push(e);
 }
