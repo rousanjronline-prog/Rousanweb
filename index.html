@@ -6,35 +6,45 @@
   <title>Welcome To My World</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <div id="loader"><div class="spinner"></div><span>LOADING</span></div>
 <header class="navbar">
-  <div class="logo">KRAFTON</div>
-  <button class="menu-btn">menu <span></span><span></span></button>
+  <div class="logo">MYWORLD</div>
+  <button class="menu-btn">menu <span></span><span></span><span></span></button>
 </header>
-<section class="hero">
-  <div class="laser laser1"></div><div class="laser laser2"></div>
-  <h1>WELCOME<br>TO MY<br>WORLD</h1>
-  <p>We create unforgettable worlds with bold imagination and premium digital experiences.</p>
-  <a href="#contact" class="scroll-down">↓</a>
+<nav class="mobile-menu">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</nav>
+<section class="hero" id="home">
+  <div class="laser laser1"></div>
+  <div class="laser laser2"></div>
+  <div class="hero-content">
+    <h1>WELCOME<br>TO MY<br>WORLD</h1>
+    <p>Bold imagination, premium visuals, unforgettable experiences.</p>
+    <a href="#contact" class="cta">ENTER</a>
+  </div>
 </section>
-<section class="glass cards">
-  <div class="card">Creative Design</div>
-  <div class="card">Smooth Motion</div>
-  <div class="card">Modern UI</div>
+<section class="glass" id="about">
+  <h2>Premium Experience</h2>
+  <p>Modern glassmorphism blocks, neon accents, cinematic transitions and responsive mobile-first layout.</p>
 </section>
-<section id="contact" class="glass contact">
+<section class="glass contact" id="contact">
   <h2>Contact Me</h2>
   <form>
     <input type="text" placeholder="Your Name">
-    <input type="email" placeholder="Your Email">
-    <textarea placeholder="Message"></textarea>
+    <input type="email" placeholder="Email Address">
+    <textarea placeholder="Your Message"></textarea>
     <button type="submit">Send Message</button>
   </form>
 </section>
+<script src="script.js"></script>
+</body>
+</html></section>
 <script src="script.js"></script>
 </body>
 </html></section>
