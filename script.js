@@ -1,40 +1,10 @@
-// Premium Website JavaScript
-
-// Loader remove smoothly
-window.addEventListener("load", () => {
-  const loader = document.querySelector(".loader");
-  if (loader) {
-    setTimeout(() => {
-      loader.style.opacity = "0";
-      loader.style.visibility = "hidden";
-    }, 1800);
-  }
+window.addEventListener('mousemove',e=>{
+ const x=(e.clientX/window.innerWidth-.5)*20;
+ const y=(e.clientY/window.innerHeight-.5)*20;
+ document.querySelectorAll('.line').forEach((line,i)=>{
+   line.style.transform=`rotate(28deg) translate(${x*(i+1)*0.2}px,${y*(i+1)*0.2}px)`;
+ });
 });
-
-// Mouse parallax effect
-document.addEventListener("mousemove", (e) => {
-  const content = document.querySelector(".content");
-  if (content) {
-    const x = (e.clientX / window.innerWidth - 0.5) * 20;
-    const y = (e.clientY / window.innerHeight - 0.5) * 20;
-    content.style.transform = `translate(${x}px, ${y}px)`;
-  }
-});
-
-// Menu click popup
-const menu = document.querySelector(".menu");
-if (menu) {
-  menu.addEventListener("click", () => {
-    alert("Navigation menu can be connected here.");
-  });
-}
-
-// Scroll reveal animation
-const revealElements = document.querySelectorAll(".about, .contact");
-
-function revealOnScroll() {
-  const triggerBottom = window.innerHeight * 0.85;
-
   revealElements.forEach((el) => {
     const top = el.getBoundingClientRect().top;
 
