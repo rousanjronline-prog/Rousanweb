@@ -13,7 +13,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link=>{
   });
 });
 
-document.querySelector('form').addEventListener('submit',e=>{
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('show');});});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));document.querySelectorAll('.count').forEach(counter=>{let started=false;const run=()=>{if(started)return;started=true;let n=0;const target=+counter.dataset.target;const step=Math.max(1,target/60);const int=setInterval(()=>{n+=step;if(n>=target){counter.textContent=target;clearInterval(int);}else{counter.textContent=Math.floor(n);}},20);};observer.observe(counter);counter.closest('.bio-section')&&setTimeout(run,1200);});document.querySelector('form').addEventListener('submit',e=>{
  e.preventDefault();
  alert('Message sent successfully!');
 });
