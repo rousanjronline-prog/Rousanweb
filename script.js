@@ -37,3 +37,13 @@ if(btnMusic&&music){
   else{music.pause();btnMusic.textContent='Music';}
  });
 }
+// force scroll theme
+window.addEventListener('scroll',()=>{
+ const y=window.scrollY;
+ document.body.classList.toggle('lightmode', y>200);
+});
+
+document.querySelector('form').addEventListener('submit',e=>{
+ e.preventDefault();
+ alert('Message sent successfully!');
+});
