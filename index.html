@@ -10,45 +10,65 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
 <div id="loader"><div class="spinner"></div><span>LOADING</span></div>
+
 <header class="navbar">
   <div class="logo legend-logo">ROUSAN JR</div>
   <button class="menu-btn">menu <span></span><span></span><span></span></button>
 </header>
+
 <nav class="mobile-menu">
   <a href="#home">Home</a>
   <a href="#about">My Story</a>
   <a href="#contact">Contact</a>
 </nav>
+
 <section class="hero" id="home">
   <div class="particles"></div>
   <div class="money-rain"></div>
   <div class="laser laser1"></div>
   <div class="laser laser2"></div>
+
   <div class="hero-content reveal glitch-wrap">
-    <h1 class="glitch" data-text="WELCOME TO MY PROFITILIO">WELCOME<br>TO MY<br>PROFITILIO</h1>
+    <h1 class="glitch" data-text="WELCOME TO MY PROFITILIO">
+      WELCOME<br>TO MY<br>PROFITILIO
+    </h1>
+
     <p>Bold imagination, premium visuals, unforgettable experiences.</p>
-    <div class="hero-actions"><a href="#contact" class="cta">ENTER</a><a href="https://www.instagram.com/rousan_jr_?igsh=MXNwemN2YnQ3a3Ziag==" target="_blank" class="cta insta-btn">Instagram</a></div><div class="live-counter">Visitors Today: <span id="visitors">0</span></div>
+
+    <div class="hero-actions">
+      <a href="#contact" class="cta">ENTER</a>
+      <a href="https://ig.me/m/rousan_jr_" target="_blank" class="cta insta-btn">Instagram</a>
+    </div>
+
+    <div class="live-counter">Visitors Today: <span id="visitors">0</span></div>
   </div>
 </section>
+
 <section class="glass bio-section reveal" id="about">
   <div class="bio-badge">MY STORY</div>
+
   <div class="bio-grid">
     <div class="bio-left">
-  <h2>WHO IS ROUSAN JR?</h2>
-  <p class="bio-lead">An unemployed guy with 12+ hour screen time, student.</p>
-  <p>17 btw.</p>
-  <div class="bio-stats">
-    <span>Entrepreneur Mindset</span>
-    <span>Creative Vision</span>
-    <span>Future Legacy</span>
-  </div>
-  <a href="#contact" class="cta bio-btn">Connect With Me</a>
+      <h2>WHO IS ROUSAN JR?</h2>
+      <p class="bio-lead">An unemployed guy with 12+ hour screen time, student.</p>
+      <p>17 btw.</p>
+
+      <div class="bio-stats">
+        <span>Entrepreneur Mindset</span>
+        <span>Creative Vision</span>
+        <span>Future Legacy</span>
+      </div>
+
+      <a href="#contact" class="cta bio-btn">Connect With Me</a>
     </div>
+
     <div class="bio-card">
       <img class="profile-photo" src="ROUSAN.jpg" alt="Rousan Jr">
       <div class="avatar-ring"></div>
       <div class="avatar">RJ</div>
+
       <div class="counter-wrap">
         <div><strong class="count" data-target="100">0</strong><span> Vision</span></div>
         <div><strong class="count" data-target="500">0</strong><span> Goals</span></div>
@@ -57,24 +77,62 @@
     </div>
   </div>
 </section>
+
+<!-- ✅ UPDATED CONTACT SECTION -->
 <section class="glass contact" id="contact">
   <h2>Contact Me</h2>
-  <form>
-    <input type="text" placeholder="Your Name">
-    <input type="email" placeholder="Email Address">
-    <textarea placeholder="Your Message"></textarea>
-    <button type="submit">Send Message</button>
-  </form>
+
+  <p style="margin-top:10px;">
+    Want to connect? DM me directly on Instagram.
+  </p>
+
+  <a href="https://ig.me/m/rousan_jr_" 
+     target="_blank" 
+     class="cta insta-btn"
+     style="margin-top:20px; display:inline-block;">
+     DM Me on Instagram
+  </a>
+
+  <p style="margin-top:12px; opacity:0.7;">
+    Fast replies. Serious inquiries only.
+  </p>
 </section>
+
 <script src="script.js"></script>
 
+<audio id="bgMusic" loop>
+  <source src="smooth_operator.mp3" type="audio/mpeg">
+</audio>
 
-<audio id="bgMusic" loop><source src="smooth_operator.mp3" type="audio/mpeg"></audio>
 <div class="vault-link">VIP Vault</div>
 <div class="story-bar"></div>
 <div class="theme-switcher">Theme</div>
 <div class="toast-msg">Welcome to the empire.</div>
-<div class="elite-panel glass reveal"><h3>Elite Dashboard</h3><div id="liveClock"></div><a class="cta cv-btn" href="#" download>Download CV</a><div class="skills"><div class="skill"><span>Design</span><div class="bar"><i style="width:92%"></i></div></div><div class="skill"><span>Vision</span><div class="bar"><i style="width:98%"></i></div></div><div class="skill"><span>Hustle</span><div class="bar"><i style="width:96%"></i></div></div></div><div class="testimonial">“Future billionaire energy.”</div></div><div class="cursor-glow"></div><div class="floating-card glass reveal"><h3 id="typedTitle"></h3><p>Luxury. Power. Vision.</p></div><a class="insta-float" href="https://www.instagram.com/rousan_jr_?igsh=MXNwemN2YnQ3a3Ziag==" target="_blank">DM</a>
+
+<div class="elite-panel glass reveal">
+  <h3>Elite Dashboard</h3>
+  <div id="liveClock"></div>
+  <a class="cta cv-btn" href="#" download>Download CV</a>
+
+  <div class="skills">
+    <div class="skill"><span>Design</span><div class="bar"><i style="width:92%"></i></div></div>
+    <div class="skill"><span>Vision</span><div class="bar"><i style="width:98%"></i></div></div>
+    <div class="skill"><span>Hustle</span><div class="bar"><i style="width:96%"></i></div></div>
+  </div>
+
+  <div class="testimonial">“Future billionaire energy.”</div>
+</div>
+
+<div class="cursor-glow"></div>
+
+<div class="floating-card glass reveal">
+  <h3 id="typedTitle"></h3>
+  <p>Luxury. Power. Vision.</p>
+</div>
+
+<a class="insta-float" href="https://ig.me/m/rousan_jr_" target="_blank">DM</a>
+
 <button class="music-toggle">Music</button>
+
 </body>
 </html>
