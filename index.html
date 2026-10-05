@@ -3,81 +3,177 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome To Rousan Jr</title>
+  <title>Personal Showcase</title>
+
+  <!-- Google Fonts & Lucide Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- External Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<audio id="bgMusic" loop>
-  <source src="smooth_operator.mp3" type="audio/mpeg">
-</audio>
-<div id="loader"><div class="spinner"></div><span>LOADING</span></div>
-<header class="navbar">
-  <div class="logo legend-logo">ROUSAN JR</div>
-  <button class="menu-btn">menu <span></span><span></span><span></span></button>
-</header>
-<nav class="mobile-menu">
-  <a href="#home">Home</a>
-  <a href="#about">My Story</a>
-  <a href="#contact">Contact</a>
-</nav>
-<section class="hero" id="home">
-  <div class="particles"></div>
-  <div class="money-rain"></div>
-  <div class="laser laser1"></div>
-  <div class="laser laser2"></div>
-  <div class="hero-content reveal glitch-wrap">
-    <h1 class="glitch" data-text="WELCOME TO MY PORTFOLIO">WELCOME<br>TO MY<br>PORTFOLIO</h1>
-    <p>Bold imagination, premium visuals, unforgettable experiences.</p>
-    <div class="hero-actions"><a href="#contact" class="cta">ENTER</a><a href="https://www.instagram.com/rousan_jr_?igsh=MXNwemN2YnQ3a3Ziag==" target="_blank" class="cta insta-btn">Instagram</a></div><div class="live-counter">Visitors Today: <span id="visitors">0</span></div>
+
+  <!-- Fullscreen Video Background Container -->
+  <div class="video-background-wrapper">
+    <video id="bgVideo" autoplay muted loop playsinline>
+      <!-- Point this src to your downloaded video file -->
+      <source src="background.mp4" type="video/mp4" />
+      Your browser does not support HTML5 video.
+    </video>
+    <div class="video-overlay"></div>
+    <div class="vignette"></div>
   </div>
-</section>
-<section class="glass bio-section reveal" id="about">
-  <div class="bio-badge">MY STORY</div>
-  <div class="bio-grid">
-    <div class="bio-left">
-  <h2>WHO IS ROUSAN JR?</h2>
-  <p class="bio-lead">An unemployed guy with 12+ hour screen time, student.</p>
-  <p>17 btw.</p>
-  <div class="bio-stats">
-    <span>UNEMPLOYED</span>
-    <span>CERTIFIED BAKCHOD</span>
-    <span>Future Legacy</span>
-  </div>
-  <a href="#contact" class="cta bio-btn">Connect With Me</a>
+
+  <!-- Navigation Bar -->
+  <header class="navbar glass">
+    <div class="nav-brand">
+      <span class="logo-dot"></span>
+      <span class="brand-name">SHOWCASE</span>
     </div>
-    <div class="bio-card">
-      <img class="profile-photo" src="ROUSAN.jpg" alt="Rousan Jr">
-      <div class="avatar-ring"></div>
-      <div class="avatar">RJ</div>
-      <div class="counter-wrap">
-        <div><strong class="count" data-target="100">0</strong><span> Vision</span></div>
-        <div><strong class="count" data-target="500">0</strong><span> Goals</span></div>
-        <div><strong class="count" data-target="1">0</strong><span> Legacy</span></div>
+
+    <nav class="nav-links">
+      <a href="#hero">Overview</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#stats">Stats</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <!-- Mute / Unmute Button -->
+      <button id="audioToggleBtn" class="icon-btn glass-btn" title="Toggle Audio">
+        <i data-lucide="volume-x" id="audioIcon"></i>
+      </button>
+
+      <!-- Video Settings / Uploader Button -->
+      <button id="openModalBtn" class="pill-btn glass-btn">
+        <i data-lucide="video"></i>
+        <span>Change Video</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-content">
+    
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="badge glass">
+        <span class="pulse-indicator"></span>
+        <span>Visual Showcase & Portfolio</span>
+      </div>
+      
+      <h1 class="hero-title">
+        PUSHING <span class="gradient-text">LIMITS</span><br />
+        EVERY SECOND.
+      </h1>
+
+      <p class="hero-subtext">
+        High-performance visuals meet cutting-edge web design. Featuring full-screen cinematic video playback with real-time audio controls.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="#highlights" class="btn btn-primary">
+          <span>Explore Projects</span>
+          <i data-lucide="arrow-right"></i>
+        </a>
+        <button id="triggerModalSecondary" class="btn btn-secondary glass">
+          <i data-lucide="upload-cloud"></i>
+          <span>Upload Video</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section id="stats" class="stats-grid">
+      <div class="stat-card glass">
+        <span class="stat-num">1080p</span>
+        <span class="stat-label">Full HD Motion</span>
+      </div>
+      <div class="stat-card glass">
+        <span class="stat-num">60 FPS</span>
+        <span class="stat-label">Smooth Framerate</span>
+      </div>
+      <div class="stat-card glass">
+        <span class="stat-num">0.2s</span>
+        <span class="stat-label">Instant Latency</span>
+      </div>
+      <div class="stat-card glass">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Responsive Layout</span>
+      </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section id="highlights" class="highlights-section">
+      <div class="section-header">
+        <h2>Featured Spotlights</h2>
+        <p>Curated creative moments and highlights</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="feature-card glass">
+          <div class="card-icon"><i data-lucide="zap"></i></div>
+          <h3>Dynamic Playback</h3>
+          <p>Seamlessly scales across ultra-wide monitors, tablets, and mobile displays without black bars or letterboxing.</p>
+        </div>
+
+        <div class="feature-card glass">
+          <div class="card-icon"><i data-lucide="sliders"></i></div>
+          <h3>Custom Controls</h3>
+          <p>Unmute original video audio or replace the active backdrop with any video file straight from your computer.</p>
+        </div>
+
+        <div class="feature-card glass">
+          <div class="card-icon"><i data-lucide="shield-check"></i></div>
+          <h3>Optimized Performance</h3>
+          <p>Utilizes GPU-accelerated backdrop filters and hardware-accelerated HTML5 video rendering.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="glass contact-box">
+        <h2>Let's build something epic.</h2>
+        <p>Have an idea or need a customized video-driven landing page?</p>
+        <a href="mailto:hello@example.com" class="btn btn-primary">
+          <i data-lucide="mail"></i>
+          <span>Get in Touch</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2026 Showcase. Built with HTML, CSS & JavaScript.</p>
+    </footer>
+  </main>
+
+  <!-- Video Selector Modal -->
+  <div id="videoModal" class="modal-overlay hidden">
+    <div class="modal-card glass">
+      <div class="modal-header">
+        <h3>Background Video Settings</h3>
+        <button id="closeModalBtn" class="icon-btn-close">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <label class="drop-zone" id="dropZone" for="fileInput">
+          <i data-lucide="film" class="drop-icon"></i>
+          <p><strong>Click to choose a video</strong> or drag & drop</p>
+          <span>Supports MP4, WebM, MOV</span>
+          <input type="file" id="fileInput" accept="video/mp4,video/webm,video/ogg,video/quicktime" hidden />
+        </label>
       </div>
     </div>
   </div>
-</section>
-<section class="glass contact" id="contact">
-  <h2>Contact Me</h2>
-  <form>
-    <input type="text" placeholder="Your Name">
-    <input type="email" placeholder="Email Address">
-    <textarea placeholder="Your Message"></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-</section>
-<script src="script.js"></script>
 
-
-<audio id="bgMusic" loop><source src="smooth_operator.mp3" type="audio/mpeg"></audio>
-<div class="vault-link">VIP Vault</div>
-<div class="story-bar"></div>
-<div class="theme-switcher">Theme</div>
-<div class="toast-msg">Welcome to the empire.</div>
-<div class="elite-panel glass reveal"><h3>Elite Dashboard</h3><div id="liveClock"></div><a class="cta cv-btn" href="#" download>Download CV</a><div class="skills"><div class="skill"><span>Design</span><div class="bar"><i style="width:92%"></i></div></div><div class="skill"><span>Vision</span><div class="bar"><i style="width:98%"></i></div></div><div class="skill"><span>Hustle</span><div class="bar"><i style="width:96%"></i></div></div></div><div class="testimonial">“Future billionaire energy.”</div></div><div class="cursor-glow"></div><div class="floating-card glass reveal"><h3 id="typedTitle"></h3><p>Luxury. Power. Vision.</p></div><a class="insta-float" href="https://www.instagram.com/rousan_jr_?igsh=MXNwemN2YnQ3a3Ziag==" target="_blank">DM</a>
-<button class="music-toggle">Music</button>
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
 </body>
-  </html>
+</html>
