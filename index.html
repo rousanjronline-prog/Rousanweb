@@ -1,150 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Personal Showcase</title>
-
-  <!-- Google Fonts & Lucide Icons -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROUSAN PORTFOLIO</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-
-  <!-- Fullscreen Background Video -->
-  <div class="video-background-wrapper">
-    <video id="bgVideo" autoplay muted loop playsinline preload="auto">
-      <source src="VID_20261006_013742_392.mp4" type="video/mp4" />
-      Your browser does not support HTML5 video.
-    </video>
-    <div class="video-overlay"></div>
-    <div class="vignette"></div>
-  </div>
-
-  <!-- Audio Prompt Banner -->
-  <div id="audioPrompt" class="audio-prompt">
-    <span>Click anywhere to activate sound</span>
-  </div>
-
-  <!-- Navigation Bar -->
-  <header class="navbar glass">
-    <div class="nav-brand">
-      <span class="logo-dot"></span>
-      <span class="brand-name">SHOWCASE</span>
-    </div>
-
-    <nav class="nav-links">
-      <a href="#hero">Overview</a>
-      <a href="#highlights">Highlights</a>
-      <a href="#stats">Stats</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <div class="nav-actions">
-      <!-- Mute / Unmute Button -->
-      <button id="audioToggleBtn" class="icon-btn glass-btn" title="Toggle Audio">
-        <i data-lucide="volume-x" id="audioIcon"></i>
-      </button>
-    </div>
-  </header>
-
-  <!-- Main Showcase Content -->
-  <main class="main-content">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #060608;
+      color: #FFFFFF;
+    }
+    .font-display {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .bar {
+      width: 3px;
+      background-color: #FF4E18;
+      border-radius: 9999px;
+      animation: soundPulse 1.2s ease-in-out infinite alternate;
+    }
+    .bar:nth-child(1) { height: 6px; animation-delay: 0.1s; }
+    .bar:nth-child(2) { height: 16px; animation-delay: 0.3s; }
+    .bar:nth-child(3) { height: 10px; animation-delay: 0.2s; }
+    .bar:nth-child(4) { height: 14px; animation-delay: 0.4s; }
     
-    <!-- Hero Section -->
-    <section id="hero" class="hero-section">
-      <div class="badge glass">
-        <span class="pulse-indicator"></span>
-        <span>Visual Showcase</span>
-      </div>
+    .bars-muted .bar {
+      height: 4px !important;
+      animation: none !important;
+      background-color: #666;
+    }
+
+    @keyframes soundPulse {
+      0% { height: 4px; }
+      100% { height: 18px; }
+    }
+  </style>
+</head>
+<body class="bg-[#060608] text-white antialiased selection:bg-[#FF4E18] selection:text-white">
+
+  <!-- Unmute Notification -->
+  <div id="unmute-banner" onclick="enableSound()" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-[#FF4E18] text-white text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full shadow-2xl flex items-center gap-2 cursor-pointer transition transform hover:scale-105 active:scale-95">
+    <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+    <span>Click anywhere to enable background audio</span>
+    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+    </svg>
+  </div>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+
+    <!-- Hero Card -->
+    <div class="relative w-full rounded-[2.5rem] overflow-hidden border border-neutral-800/80 bg-neutral-950 shadow-2xl min-h-[640px] md:min-h-[720px] flex flex-col justify-between">
       
-      <h1 class="hero-title">
-        PUSHING <span class="gradient-text">LIMITS</span><br />
-        EVERY SECOND.
-      </h1>
+      <!-- Video Element -->
+      <video
+        id="bg-video"
+        playsinline
+        webkit-playsinline
+        muted
+        autoplay
+        loop
+        preload="auto"
+        class="absolute inset-0 w-full h-full object-cover object-center z-0 transition-opacity duration-700">
+        <source src="VID_20261006_013742_392.mp4" type="video/mp4">
+      </video>
 
-      <p class="hero-subtext">
-        High-performance visuals meet cutting-edge web design. Featuring full-screen cinematic video playback with real-time audio controls.
-      </p>
+      <!-- Contrast Gradients -->
+      <div class="absolute inset-0 z-[1] bg-gradient-to-t from-[#060608] via-black/40 to-[#060608]/80 pointer-events-none"></div>
+      <div class="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#FF4E18]/35 via-transparent to-transparent pointer-events-none"></div>
 
-      <div class="hero-cta-group">
-        <a href="#highlights" class="btn btn-primary">
-          <span>Explore Highlights</span>
-          <i data-lucide="arrow-right"></i>
+      <!-- Navigation Header -->
+      <header class="relative z-10 px-6 md:px-12 py-8 flex items-center justify-between">
+        <a href="#" class="font-display font-black text-2xl tracking-tight text-white flex items-center gap-1.5">
+          ROUSAN<span class="text-[#FF4E18]">.</span>
         </a>
-      </div>
-    </section>
 
-    <!-- Stats Bar -->
-    <section id="stats" class="stats-grid">
-      <div class="stat-card glass">
-        <span class="stat-num">1080p</span>
-        <span class="stat-label">Full HD Motion</span>
-      </div>
-      <div class="stat-card glass">
-        <span class="stat-num">60 FPS</span>
-        <span class="stat-label">Smooth Framerate</span>
-      </div>
-      <div class="stat-card glass">
-        <span class="stat-num">0.2s</span>
-        <span class="stat-label">Instant Latency</span>
-      </div>
-      <div class="stat-card glass">
-        <span class="stat-num">100%</span>
-        <span class="stat-label">Responsive Layout</span>
-      </div>
-    </section>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-300">
+          <a href="#work" class="hover:text-white transition">Work</a>
+          <a href="#services" class="hover:text-white transition">Capabilities</a>
+          <a href="#about" class="hover:text-white transition">About</a>
+        </nav>
 
-    <!-- Highlights Section -->
-    <section id="highlights" class="highlights-section">
-      <div class="section-header">
-        <h2>Featured Spotlights</h2>
-        <p>Curated creative moments and highlights</p>
-      </div>
+        <div class="flex items-center gap-3">
+          <!-- Audio Toggle Button -->
+          <button id="sound-btn" onclick="toggleSound()" class="flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 transition text-xs font-semibold text-white">
+            <div id="equalizer" class="flex items-end gap-[2.5px] h-4 bars-muted">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </div>
+            <span id="sound-label">SOUND OFF</span>
+          </button>
 
-      <div class="cards-grid">
-        <div class="feature-card glass">
-          <div class="card-icon"><i data-lucide="zap"></i></div>
-          <h3>Dynamic Playback</h3>
-          <p>Seamlessly scales across ultra-wide monitors, tablets, and mobile displays without letterboxing.</p>
+          <!-- Local File Picker -->
+          <label class="cursor-pointer px-4 py-2 rounded-full bg-[#FF4E18] hover:bg-[#e04313] transition text-xs font-semibold text-white flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Choose Video
+            <input type="file" id="local-video-picker" accept="video/*" class="hidden">
+          </label>
+        </div>
+      </header>
+
+      <!-- Center Typography -->
+      <div class="relative z-10 px-6 md:px-12 py-12 grid md:grid-cols-2 gap-8 items-end">
+        <div>
+          <span class="text-xs font-bold tracking-widest uppercase text-[#FF4E18] block mb-2">Hey, I'm a</span>
+          <h1 class="font-display text-5xl sm:text-7xl font-extrabold tracking-tight leading-[1.05]">
+            Creative<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-neutral-400">Director</span>
+          </h1>
         </div>
 
-        <div class="feature-card glass">
-          <div class="card-icon"><i data-lucide="volume-2"></i></div>
-          <h3>Direct Audio Trigger</h3>
-          <p>Bypasses browser autoplay limitations by automatically initializing high-fidelity audio on first user touch.</p>
+        <div class="md:text-right space-y-4">
+          <h2 class="font-display text-xl sm:text-2xl font-bold text-white leading-snug">
+            Great design should feel invisible.
+          </h2>
+          <p class="text-neutral-300 text-sm max-w-md md:ml-auto leading-relaxed">
+            From logo to motion language, I build brands that connect, convert, and command attention.
+          </p>
         </div>
+      </div>
 
-        <div class="feature-card glass">
-          <div class="card-icon"><i data-lucide="shield-check"></i></div>
-          <h3>Hardware Acceleration</h3>
-          <p>Built with lightweight CSS backdrop filters and GPU-accelerated video decoding.</p>
+      <!-- Services Strip -->
+      <div class="relative z-10 border-t border-white/10 bg-black/50 backdrop-blur-xl px-6 md:px-12 py-5 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div>
+          <span class="text-[11px] font-mono text-[#FF4E18]">#01</span>
+          <p class="text-sm font-semibold text-white">Brand Strategy</p>
+        </div>
+        <div>
+          <span class="text-[11px] font-mono text-[#FF4E18]">#02</span>
+          <p class="text-sm font-semibold text-white">Brand Identity Design</p>
+        </div>
+        <div>
+          <span class="text-[11px] font-mono text-[#FF4E18]">#03</span>
+          <p class="text-sm font-semibold text-white">Packaging Design</p>
+        </div>
+        <div>
+          <span class="text-[11px] font-mono text-[#FF4E18]">#04</span>
+          <p class="text-sm font-semibold text-white">Creative Direction</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Partner Strip -->
+    <div class="py-12 border-b border-neutral-800/80 flex flex-wrap items-center justify-between gap-6 text-neutral-400 text-xs sm:text-sm font-medium">
+      <span class="text-neutral-500 font-semibold uppercase tracking-wider text-[11px]">Trusted by Brands I've Helped Shape</span>
+      <div class="flex items-center gap-8 flex-wrap">
+        <span class="flex items-center gap-2 hover:text-white transition cursor-default">
+          <span class="w-3 h-3 rounded-full border border-neutral-400"></span> Supa Blox
+        </span>
+        <span class="flex items-center gap-2 hover:text-white transition cursor-default">
+          <span class="text-xs">⧖</span> Hype Blox
+        </span>
+        <span class="flex items-center gap-2 hover:text-white transition cursor-default">
+          <span class="w-2.5 h-2.5 bg-neutral-400 rounded-sm"></span> Frame Blox
+        </span>
+        <span class="flex items-center gap-2 hover:text-white transition cursor-default">
+          <span class="w-3 h-3 rounded-full bg-neutral-400"></span> Ultra Blox
+        </span>
+      </div>
+    </div>
+
+    <!-- Intro Section -->
+    <section id="about" class="py-16 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <span class="text-[#FF4E18] text-xs font-bold uppercase tracking-wider block mb-2">Behind the Designs</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+          Shaping Experiences That Make Life Simpler
+        </h2>
+      </div>
+      <div>
+        <p class="text-neutral-300 text-base leading-relaxed mb-6">
+          I'm a designer and art director focused on building clean, intuitive visual systems and digital interfaces that solve real-world problems.
+        </p>
+        <div class="flex items-center gap-4">
+          <span class="text-xs font-mono text-neutral-400">Let's Build Something Meaningful Together</span>
+          <a href="mailto:contact@rousan.com" class="px-5 py-2.5 rounded-full bg-[#FF4E18] hover:bg-[#e04313] text-white text-xs font-bold transition">
+            Get in touch &rarr;
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-      <div class="glass contact-box">
-        <h2>Let's build something epic.</h2>
-        <p>Looking to collaborate or build customized media experiences?</p>
-        <a href="mailto:contact@example.com" class="btn btn-primary">
-          <i data-lucide="mail"></i>
-          <span>Get in Touch</span>
-        </a>
+    <!-- Project Showcase -->
+    <section id="work" class="pb-24">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="group rounded-3xl bg-neutral-900 border border-neutral-800 overflow-hidden p-3.5 transition-all duration-300 hover:border-neutral-600">
+          <div class="w-full h-80 rounded-2xl overflow-hidden bg-neutral-800">
+            <img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80" alt="Technical Outerwear" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="pt-4 pb-2 px-2 flex justify-between items-center">
+            <div>
+              <p class="text-[11px] font-mono text-[#FF4E18]">#01 Fashion & Apparel</p>
+              <h3 class="font-semibold text-base text-white mt-0.5">Vessel Parka</h3>
+            </div>
+            <span class="text-neutral-400 group-hover:text-white transition">&rarr;</span>
+          </div>
+        </div>
+
+        <div class="group rounded-3xl bg-neutral-900 border border-neutral-800 overflow-hidden p-3.5 transition-all duration-300 hover:border-neutral-600">
+          <div class="w-full h-80 rounded-2xl overflow-hidden bg-neutral-800">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" alt="Acoustic Studio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="pt-4 pb-2 px-2 flex justify-between items-center">
+            <div>
+              <p class="text-[11px] font-mono text-[#FF4E18]">#02 Acoustic Hardware</p>
+              <h3 class="font-semibold text-base text-white mt-0.5">S-Series Monitors</h3>
+            </div>
+            <span class="text-neutral-400 group-hover:text-white transition">&rarr;</span>
+          </div>
+        </div>
+
+        <div class="group rounded-3xl bg-neutral-900 border border-neutral-800 overflow-hidden p-3.5 transition-all duration-300 hover:border-neutral-600">
+          <div class="w-full h-80 rounded-2xl overflow-hidden bg-neutral-800">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" alt="Cosmetic Bottle" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="pt-4 pb-2 px-2 flex justify-between items-center">
+            <div>
+              <p class="text-[11px] font-mono text-[#FF4E18]">#03 Industrial Packaging</p>
+              <h3 class="font-semibold text-base text-white mt-0.5">Noir Essence Flacon</h3>
+            </div>
+            <span class="text-neutral-400 group-hover:text-white transition">&rarr;</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>© 2026 Showcase. Powered by HTML5, CSS3, & JavaScript.</p>
-    </footer>
   </main>
 
-  <script src="script.js"></script>
+  <script>
+    const video = document.getElementById('bg-video');
+    const soundBtn = document.getElementById('sound-btn');
+    const soundLabel = document.getElementById('sound-label');
+    const equalizer = document.getElementById('equalizer');
+    const unmuteBanner = document.getElementById('unmute-banner');
+    const filePicker = document.getElementById('local-video-picker');
+
+    function startAutoplay() {
+      video.muted = true;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(err => {
+          console.log('Autoplay deferred:', err);
+        });
+      }
+    }
+
+    function enableSound() {
+      video.muted = false;
+      video.volume = 0.9;
+      video.play();
+      soundLabel.textContent = 'SOUND ACTIVE';
+      equalizer.classList.remove('bars-muted');
+      if (unmuteBanner) {
+        unmuteBanner.style.opacity = '0';
+        setTimeout(() => unmuteBanner.remove(), 350);
+      }
+    }
+
+    function toggleSound() {
+      if (video.muted) {
+        enableSound();
+      } else {
+        video.muted = true;
+        soundLabel.textContent = 'SOUND OFF';
+        equalizer.classList.add('bars-muted');
+      }
+    }
+
+    function triggerAudioOnFirstAction() {
+      enableSound();
+      window.removeEventListener('click', triggerAudioOnFirstAction);
+      window.removeEventListener('touchstart', triggerAudioOnFirstAction);
+    }
+    window.addEventListener('click', triggerAudioOnFirstAction, { once: true });
+    window.addEventListener('touchstart', triggerAudioOnFirstAction, { once: true });
+
+    filePicker.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const objectUrl = URL.createObjectURL(file);
+        video.src = objectUrl;
+        video.load();
+        enableSound();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', startAutoplay);
+  </script>
 </body>
 </html>
