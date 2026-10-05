@@ -17,17 +17,96 @@
     .font-display {
       font-family: 'Space Grotesk', sans-serif;
     }
+
+    /* Halftone comic dot overlay (Spider-Verse signature) */
+    .halftone-overlay {
+      background-image: radial-gradient(#00ffff 0.75px, transparent 0.75px), radial-gradient(#ff0055 0.75px, transparent 0.75px);
+      background-size: 8px 8px;
+      background-position: 0 0, 4px 4px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease-out;
+      mix-blend-mode: color-dodge;
+    }
+
+    /* Glitch active state on scroll */
+    .spider-glitch-active .halftone-overlay {
+      opacity: 0.35;
+    }
+
+    .spider-glitch-active {
+      animation: spiderverseChromatic 0.18s steps(2, start) infinite alternate;
+    }
+
+    .spider-glitch-active .glitch-target {
+      animation: spiderverseSlice 0.18s steps(2, start) infinite;
+      position: relative;
+    }
+
+    /* RGB Chromatic Split + Skew */
+    @keyframes spiderverseChromatic {
+      0% {
+        transform: translate(0, 0) skew(0deg);
+        filter: drop-shadow(0 0 0 transparent);
+      }
+      25% {
+        transform: translate(-3px, 1.5px) skew(-0.8deg);
+        filter: drop-shadow(4px 0 0 #ff0055) drop-shadow(-4px 0 0 #00ffff);
+      }
+      50% {
+        transform: translate(3px, -1.5px) skew(0.6deg);
+        filter: drop-shadow(-5px 0 0 #ff0055) drop-shadow(5px 0 0 #00ffff);
+      }
+      75% {
+        transform: translate(-2px, -1px) skew(-0.4deg);
+        filter: drop-shadow(3px 0 0 #ffe600) drop-shadow(-3px 0 0 #00ffff);
+      }
+      100% {
+        transform: translate(2px, 2px) skew(0.8deg);
+        filter: drop-shadow(5px 0 0 #ff0055) drop-shadow(-5px 0 0 #00ffff);
+      }
+    }
+
+    /* Comic Book Sliced Clipping */
+    @keyframes spiderverseSlice {
+      0% {
+        clip-path: inset(0 0 0 0);
+      }
+      20% {
+        clip-path: inset(18% 0 65% 0);
+        transform: translate(-5px, 0);
+      }
+      40% {
+        clip-path: inset(45% 0 35% 0);
+        transform: translate(6px, 0);
+      }
+      60% {
+        clip-path: inset(70% 0 10% 0);
+        transform: translate(-4px, 0);
+      }
+      80% {
+        clip-path: inset(5% 0 85% 0);
+        transform: translate(3px, 0);
+      }
+      100% {
+        clip-path: inset(0 0 0 0);
+        transform: translate(0, 0);
+      }
+    }
   </style>
 </head>
-<body class="bg-[#060608] text-white antialiased selection:bg-[#FF4E18] selection:text-white select-none">
+<body class="bg-[#060608] text-white antialiased selection:bg-[#FF4E18] selection:text-white select-none relative">
 
-  <!-- Floating Touch Indicator (Fades out immediately after the first interaction) -->
+  <!-- Spider-Verse Screen Flash & Halftone Dot Grid -->
+  <div id="spiderverse-dots" class="halftone-overlay fixed inset-0 z-40 pointer-events-none"></div>
+
+  <!-- Floating Touch Indicator -->
   <div id="touch-hint" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-[#FF4E18] text-white text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full shadow-2xl flex items-center gap-2 pointer-events-none transition-all duration-500">
     <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
     <span>Tap anywhere to start</span>
   </div>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+  <main id="glitch-wrapper" class="max-w-6xl mx-auto px-4 sm:px-6 py-6 transition-transform duration-75">
 
     <!-- HERO CARD -->
     <div class="relative w-full rounded-[2.5rem] overflow-hidden border border-neutral-800/80 bg-neutral-950 shadow-2xl min-h-[640px] md:min-h-[720px] flex flex-col justify-between">
@@ -49,7 +128,7 @@
 
       <!-- Navigation Header -->
       <header class="relative z-10 px-6 md:px-12 py-8 flex items-center justify-between">
-        <a href="#" class="font-display font-black text-2xl tracking-tight text-white flex items-center gap-1.5">
+        <a href="#" class="font-display font-black text-2xl tracking-tight text-white flex items-center gap-1.5 glitch-target">
           ROUSAN<span class="text-[#FF4E18]">.</span>
         </a>
 
@@ -67,18 +146,18 @@
       <!-- Center Hero Typography -->
       <div class="relative z-10 px-6 md:px-12 py-12 grid md:grid-cols-2 gap-8 items-end pointer-events-none">
         <div>
-          <span class="text-xs font-bold tracking-widest uppercase text-[#FF4E18] block mb-2">Hey, I'm a</span>
-          <h1 class="font-display text-5xl sm:text-7xl font-extrabold tracking-tight leading-[1.05]">
+          <span class="text-xs font-bold tracking-widest uppercase text-[#FF4E18] block mb-2 glitch-target">Hey, I'm a</span>
+          <h1 class="font-display text-5xl sm:text-7xl font-extrabold tracking-tight leading-[1.05] glitch-target">
             Creative<br>
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-neutral-400">Director</span>
           </h1>
         </div>
 
         <div class="md:text-right space-y-4">
-          <h2 class="font-display text-xl sm:text-2xl font-bold text-white leading-snug">
+          <h2 class="font-display text-xl sm:text-2xl font-bold text-white leading-snug glitch-target">
             Great design should feel invisible.
           </h2>
-          <p class="text-neutral-300 text-sm max-w-md md:ml-auto leading-relaxed">
+          <p class="text-neutral-300 text-sm max-w-md md:ml-auto leading-relaxed glitch-target">
             From logo to motion language, I build brands that connect, convert, and command attention.
           </p>
         </div>
@@ -128,8 +207,8 @@
     <!-- BEHIND THE DESIGNS / INTRO -->
     <section id="about" class="py-16 grid md:grid-cols-2 gap-10 items-center">
       <div>
-        <span class="text-[#FF4E18] text-xs font-bold uppercase tracking-wider block mb-2">Behind the Designs</span>
-        <h2 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+        <span class="text-[#FF4E18] text-xs font-bold uppercase tracking-wider block mb-2 glitch-target">Behind the Designs</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight glitch-target">
           Shaping Experiences That Make Life Simpler
         </h2>
       </div>
@@ -198,10 +277,10 @@
   <script>
     const video = document.getElementById('bg-video');
     const touchHint = document.getElementById('touch-hint');
+    const glitchWrapper = document.getElementById('glitch-wrapper');
 
-    // Toggle playback and sound when clicking or tapping anywhere on the website
+    // 1. One-tap audio and video toggle
     function handleToggle(e) {
-      // Allow navigation links and buttons to be clicked without toggling playback
       if (e.target.closest('a, button')) return;
 
       if (video.paused) {
@@ -216,8 +295,18 @@
         video.pause();
       }
     }
-
     document.addEventListener('click', handleToggle);
+
+    // 2. Spider-Verse Scroll Glitch Controller
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      document.body.classList.add('spider-glitch-active');
+
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        document.body.classList.remove('spider-glitch-active');
+      }, 140);
+    }, { passive: true });
   </script>
 </body>
 </html>
