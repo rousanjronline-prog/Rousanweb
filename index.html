@@ -2,21 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Fixed viewport forces desktop resolution scale on mobile devices -->
-  <meta name="viewport" content="width=1280, initial-scale=0.35, maximum-scale=3.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ROUSAN PORTFOLIO</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      width: 1280px;
-      min-width: 1280px;
-      margin: 0 auto;
+    body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: #060608;
       color: #FFFFFF;
+      overflow-x: hidden;
     }
     .font-display {
       font-family: 'Space Grotesk', sans-serif;
@@ -105,15 +102,15 @@
   <div id="spiderverse-dots" class="halftone-overlay fixed inset-0 z-40 pointer-events-none"></div>
 
   <!-- Floating Touch Indicator -->
-  <div id="touch-hint" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-[#FF4E18] text-white text-sm font-semibold px-6 py-3 rounded-full shadow-2xl flex items-center gap-2.5 pointer-events-none transition-all duration-500">
-    <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
+  <div id="touch-hint" class="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 bg-[#FF4E18] text-white text-xs md:text-sm font-semibold px-4 md:px-6 py-2.5 md:py-3 rounded-full shadow-2xl flex items-center gap-2 pointer-events-none transition-all duration-500 whitespace-nowrap">
+    <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
     <span>Tap anywhere to start</span>
   </div>
 
-  <main id="glitch-wrapper" class="w-[1200px] mx-auto px-6 py-8 transition-transform duration-75">
+  <main id="glitch-wrapper" class="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8 transition-transform duration-75">
 
-    <!-- HERO CARD (Fixed Full Desktop Dimensions) -->
-    <div class="relative w-full rounded-[2.5rem] overflow-hidden border border-neutral-800/80 bg-neutral-950 shadow-2xl h-[720px] flex flex-col justify-between">
+    <!-- HERO CARD (Fluid responsive height & layout) -->
+    <div class="relative w-full rounded-3xl md:rounded-[2.5rem] overflow-hidden border border-neutral-800/80 bg-neutral-950 shadow-2xl min-h-[580px] sm:min-h-[640px] md:min-h-[720px] flex flex-col justify-between">
       
       <!-- Video Element: Starts paused, unmuted on first tap -->
       <video
@@ -122,7 +119,7 @@
         webkit-playsinline
         loop
         preload="auto"
-        class="absolute inset-0 w-full h-full object-cover object-center z-0 transition-opacity duration-700">
+        class="absolute inset-0 w-full h-full object-cover object-center z-0 transition-opacity duration-700 pointer-events-none">
         <source src="VID_20261006_013742_392.mp4" type="video/mp4">
       </video>
 
@@ -131,115 +128,116 @@
       <div class="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#FF4E18]/35 via-transparent to-transparent pointer-events-none"></div>
 
       <!-- Navigation Header -->
-      <header class="relative z-10 px-12 py-8 flex items-center justify-between">
-        <a href="#" class="font-display font-black text-2xl tracking-tight text-white flex items-center gap-1.5 glitch-target">
+      <header class="relative z-10 px-5 sm:px-8 md:px-12 py-5 sm:py-6 md:py-8 flex items-center justify-between">
+        <a href="#" class="font-display font-black text-xl sm:text-2xl tracking-tight text-white flex items-center gap-1 glitch-target">
           ROUSAN<span class="text-[#FF4E18]">.</span>
         </a>
 
-        <nav class="flex items-center gap-8 text-sm font-medium text-neutral-300">
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-300">
           <a href="#services" class="hover:text-white transition">Capabilities</a>
           <a href="#about" class="hover:text-white transition">About</a>
           <a href="#socials" class="hover:text-white transition">Socials</a>
         </nav>
 
-        <a href="mailto:contact@rousan.com" class="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 text-xs font-semibold text-white transition">
+        <a href="mailto:contact@rousan.com" class="px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 text-xs sm:text-sm font-semibold text-white transition">
           Contact
         </a>
       </header>
 
       <!-- Center Hero Typography -->
-      <div class="relative z-10 px-12 py-12 grid grid-cols-2 gap-8 items-end pointer-events-none">
+      <div class="relative z-10 px-5 sm:px-8 md:px-12 py-8 sm:py-10 md:py-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-end pointer-events-none">
         <div>
-          <span class="text-xs font-bold tracking-widest uppercase text-[#FF4E18] block mb-2 glitch-target">Hey, I'm</span>
-          <h1 class="font-display text-7xl font-extrabold tracking-tight leading-[1.05] glitch-target">
+          <span class="text-xs sm:text-sm font-bold tracking-widest uppercase text-[#FF4E18] block mb-2 glitch-target">Hey, I'm</span>
+          <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] glitch-target">
             ROUSAN<br>
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-neutral-400">jr</span>
           </h1>
         </div>
 
-        <div class="text-right space-y-4">
-          <h2 class="font-display text-2xl font-bold text-white leading-snug glitch-target">
+        <div class="md:text-right space-y-3 md:space-y-4">
+          <h2 class="font-display text-lg sm:text-xl md:text-2xl font-bold text-white leading-snug glitch-target">
             Great design should feel invisible.
           </h2>
-          <p class="text-neutral-300 text-sm max-w-md ml-auto leading-relaxed glitch-target">
+          <p class="text-neutral-300 text-xs sm:text-sm max-w-md md:ml-auto leading-relaxed glitch-target">
             From logo to motion language, I build brands that connect, convert, and command attention.
           </p>
         </div>
       </div>
 
       <!-- Hero Bottom Capabilities Strip -->
-      <div id="services" class="relative z-10 border-t border-white/10 bg-black/50 backdrop-blur-xl px-12 py-5 grid grid-cols-4 gap-4 pointer-events-none">
+      <div id="services" class="relative z-10 border-t border-white/10 bg-black/50 backdrop-blur-xl px-5 sm:px-8 md:px-12 py-4 sm:py-5 grid grid-cols-2 md:grid-cols-4 gap-4 pointer-events-none">
         <div>
-          <span class="text-[11px] font-mono text-[#FF4E18]">#01</span>
-          <p class="text-sm font-semibold text-white">Brand Strategy</p>
+          <span class="text-[10px] sm:text-[11px] font-mono text-[#FF4E18]">#01</span>
+          <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Brand Strategy</p>
         </div>
         <div>
-          <span class="text-[11px] font-mono text-[#FF4E18]">#02</span>
-          <p class="text-sm font-semibold text-white">Brand Identity Design</p>
+          <span class="text-[10px] sm:text-[11px] font-mono text-[#FF4E18]">#02</span>
+          <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Brand Identity Design</p>
         </div>
         <div>
-          <span class="text-[11px] font-mono text-[#FF4E18]">#03</span>
-          <p class="text-sm font-semibold text-white">Packaging Design</p>
+          <span class="text-[10px] sm:text-[11px] font-mono text-[#FF4E18]">#03</span>
+          <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Packaging Design</p>
         </div>
         <div>
-          <span class="text-[11px] font-mono text-[#FF4E18]">#04</span>
-          <p class="text-sm font-semibold text-white">Creative Direction</p>
+          <span class="text-[10px] sm:text-[11px] font-mono text-[#FF4E18]">#04</span>
+          <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Creative Direction</p>
         </div>
       </div>
 
     </div>
 
     <!-- CLIENT LOGO TICKER -->
-    <div class="py-12 border-b border-neutral-800/80 flex items-center justify-between gap-6 text-neutral-400 text-sm font-medium">
-      <span class="text-neutral-500 font-semibold uppercase tracking-wider text-[11px]">Trusted by Brands I've Helped Shape</span>
-      <div class="flex items-center gap-10">
+    <div class="py-8 sm:py-12 border-b border-neutral-800/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 text-neutral-400 text-xs sm:text-sm font-medium">
+      <span class="text-neutral-500 font-semibold uppercase tracking-wider text-[10px] sm:text-[11px]">Trusted by Brands I've Helped Shape</span>
+      <div class="flex items-center flex-wrap gap-5 sm:gap-8 md:gap-10">
         <span class="flex items-center gap-2 hover:text-white transition cursor-default">
-          <span class="w-3 h-3 rounded-full border border-neutral-400"></span> Supa Blox
+          <span class="w-2.5 h-2.5 rounded-full border border-neutral-400"></span> Supa Blox
         </span>
         <span class="flex items-center gap-2 hover:text-white transition cursor-default">
           <span class="text-xs">⧖</span> Hype Blox
         </span>
         <span class="flex items-center gap-2 hover:text-white transition cursor-default">
-          <span class="w-2.5 h-2.5 bg-neutral-400 rounded-sm"></span> Frame Blox
+          <span class="w-2 h-2 bg-neutral-400 rounded-sm"></span> Frame Blox
         </span>
         <span class="flex items-center gap-2 hover:text-white transition cursor-default">
-          <span class="w-3 h-3 rounded-full bg-neutral-400"></span> Ultra Blox
+          <span class="w-2.5 h-2.5 rounded-full bg-neutral-400"></span> Ultra Blox
         </span>
       </div>
     </div>
 
     <!-- BEHIND THE DESIGNS / INTRO -->
-    <section id="about" class="py-16 grid grid-cols-2 gap-12 items-center">
+    <section id="about" class="py-12 sm:py-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
       <div>
         <span class="text-[#FF4E18] text-xs font-bold uppercase tracking-wider block mb-2 glitch-target">Behind the Designs</span>
-        <h2 class="font-display text-5xl font-extrabold tracking-tight leading-tight glitch-target">
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight glitch-target">
           Shaping Experiences That Make Life Simpler
         </h2>
       </div>
       <div>
-        <p class="text-neutral-300 text-base leading-relaxed mb-6">
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed mb-6">
           I'm a designer and art director focused on building clean, intuitive visual systems and digital interfaces that solve real-world problems.
         </p>
-        <div class="flex items-center gap-5">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
           <span class="text-xs font-mono text-neutral-400">Let's Build Something Meaningful Together</span>
-          <a href="mailto:contact@rousan.com" class="px-6 py-2.5 rounded-full bg-[#FF4E18] hover:bg-[#e04313] text-white text-xs font-bold transition">
+          <a href="mailto:contact@rousan.com" class="w-fit px-5 sm:px-6 py-2.5 rounded-full bg-[#FF4E18] hover:bg-[#e04313] text-white text-xs sm:text-sm font-bold transition">
             Get in touch &rarr;
           </a>
         </div>
       </div>
     </section>
 
-    <!-- SOCIAL MEDIA HANDLES SECTION -->
-    <section id="socials" class="pb-24">
-      <div class="mb-8">
+    <!-- SOCIAL MEDIA HANDLES SECTION (1 column on mobile, 3 columns on tablet/desktop) -->
+    <section id="socials" class="pb-16 sm:pb-24">
+      <div class="mb-6 sm:mb-8">
         <span class="text-xs font-bold uppercase tracking-wider text-[#FF4E18] block mb-2 glitch-target">Connect & Follow</span>
-        <h2 class="font-display text-4xl font-extrabold tracking-tight glitch-target">Direct Channels</h2>
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight glitch-target">Direct Channels</h2>
       </div>
 
-      <div class="grid grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
         
         <!-- Instagram -->
-        <a href="https://www.instagram.com/rousan_jr__?stkn=cDFqbXRydWYyNHMx" target="_blank" rel="noopener noreferrer" class="group rounded-3xl bg-neutral-900/90 border border-neutral-800 p-6 flex flex-col justify-between hover:border-[#FF4E18] transition duration-300 hover:-translate-y-1">
+        <a href="https://www.instagram.com/rousan_jr__?stkn=cDFqbXRydWYyNHMx" target="_blank" rel="noopener noreferrer" class="group rounded-3xl bg-neutral-900/90 border border-neutral-800 p-5 sm:p-6 flex flex-col justify-between hover:border-[#FF4E18] transition duration-300 hover:-translate-y-1">
           <div class="flex items-center justify-between">
             <div class="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center text-white group-hover:bg-[#FF4E18] transition duration-300">
               <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
@@ -248,7 +246,7 @@
             </div>
             <span class="text-neutral-500 group-hover:text-white transition">&rarr;</span>
           </div>
-          <div class="mt-8">
+          <div class="mt-6 sm:mt-8">
             <span class="text-[11px] font-mono text-[#FF4E18]">@rousan_jr__</span>
             <h3 class="font-bold text-lg text-white mt-1">Instagram</h3>
             <p class="text-xs text-neutral-400 mt-1">Direct link to profile & reels</p>
@@ -256,7 +254,7 @@
         </a>
 
         <!-- Telegram -->
-        <a href="https://t.me/Rousanjr" target="_blank" rel="noopener noreferrer" class="group rounded-3xl bg-neutral-900/90 border border-neutral-800 p-6 flex flex-col justify-between hover:border-[#FF4E18] transition duration-300 hover:-translate-y-1">
+        <a href="https://t.me/Rousanjr" target="_blank" rel="noopener noreferrer" class="group rounded-3xl bg-neutral-900/90 border border-neutral-800 p-5 sm:p-6 flex flex-col justify-between hover:border-[#FF4E18] transition duration-300 hover:-translate-y-1">
           <div class="flex items-center justify-between">
             <div class="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center text-white group-hover:bg-[#FF4E18] transition duration-300">
               <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
@@ -265,7 +263,7 @@
             </div>
             <span class="text-neutral-500 group-hover:text-white transition">&rarr;</span>
           </div>
-          <div class="mt-8">
+          <div class="mt-6 sm:mt-8">
             <span class="text-[11px] font-mono text-[#FF4E18]">t.me/Rousanjr</span>
             <h3 class="font-bold text-lg text-white mt-1">Telegram</h3>
             <p class="text-xs text-neutral-400 mt-1">Instant messaging & direct chat</p>
@@ -273,7 +271,7 @@
         </a>
 
         <!-- Discord (Click to copy username) -->
-        <div onclick="copyDiscordHandle()" class="group rounded-3xl bg-neutral-900/90 border border-neutral-800 p-6 flex flex-col justify-between hover:border-[#FF4E18] transition duration-300 hover:-translate-y-1 cursor-pointer">
+        <div onclick="copyDiscordHandle()" class="group rounded-3xl bg-neutral-900/90 border border-neutral-800 p-5 sm:p-6 flex flex-col justify-between hover:border-[#FF4E18] transition duration-300 hover:-translate-y-1 cursor-pointer">
           <div class="flex items-center justify-between">
             <div class="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center text-white group-hover:bg-[#FF4E18] transition duration-300">
               <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
@@ -282,7 +280,7 @@
             </div>
             <span id="discord-copy-badge" class="text-[11px] font-mono text-neutral-400 border border-neutral-700 rounded-full px-2.5 py-1 group-hover:border-[#FF4E18] group-hover:text-white transition">Copy Tag</span>
           </div>
-          <div class="mt-8">
+          <div class="mt-6 sm:mt-8">
             <span class="text-[11px] font-mono text-[#FF4E18]">rousanjr</span>
             <h3 class="font-bold text-lg text-white mt-1">Discord</h3>
             <p class="text-xs text-neutral-400 mt-1">Click to copy username to clipboard</p>
