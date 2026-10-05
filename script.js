@@ -1,84 +1,64 @@
-// Initialize Lucide Icons
+// Initialize Icons
 document.addEventListener('DOMContentLoaded', () => {
-  lucide.createIcons();
+  if (window.lucide) {
+    lucide.createIcons();
+  }
 });
 
-// Elements
 const bgVideo = document.getElementById('bgVideo');
 const audioToggleBtn = document.getElementById('audioToggleBtn');
 const audioIcon = document.getElementById('audioIcon');
-const openModalBtn = document.getElementById('openModalBtn');
-const triggerModalSecondary = document.getElementById('triggerModalSecondary');
-const closeModalBtn = document.getElementById('closeModalBtn');
-const videoModal = document.getElementById('videoModal');
-const dropZone = document.getElementById('dropZone');
-const fileInput = document.getElementById('fileInput');
+const audioPrompt = document.getElementById('audioPrompt');
 
-// Audio Toggle Functionality
-audioToggleBtn.addEventListener('click', () => {
+// 1. Immediately force muted autoplay so the video begins running instantly
+bgVideo.muted = true;
+const playPromise = bgVideo.play();
+
+if (playPromise !== undefined) {
+  playPromise.catch((err) => {
+    console.warn("Autoplay deferred by browser:", err);
+  });
+}
+
+// 2. Audio activation on first interaction
+function activateAudio() {
+  bgVideo.muted = false;
+  bgVideo.play();
+
+  // Update button icon to unmuted
+  if (audioIcon) {
+    audioIcon.setAttribute('data-lucide', 'volume-2');
+    if (window.lucide) lucide.createIcons();
+  }
+
+  // Hide the helper notice
+  if (audioPrompt) {
+    audioPrompt.classList.add('hidden');
+  }
+
+  // Remove one-time listeners
+  window.removeEventListener('click', activateAudio);
+  window.removeEventListener('touchstart', activateAudio);
+  window.removeEventListener('keydown', activateAudio);
+}
+
+// Listen for the very first user interaction to turn sound on
+window.addEventListener('click', activateAudio);
+window.addEventListener('touchstart', activateAudio);
+window.addEventListener('keydown', activateAudio);
+
+// 3. Manual mute/unmute toggle in navbar
+audioToggleBtn.addEventListener('click', (e) => {
+  e.stopPropagation(); // Avoid triggering document-level listeners repeatedly
+  
   if (bgVideo.muted) {
     bgVideo.muted = false;
     audioIcon.setAttribute('data-lucide', 'volume-2');
+    if (audioPrompt) audioPrompt.classList.add('hidden');
   } else {
     bgVideo.muted = true;
     audioIcon.setAttribute('data-lucide', 'volume-x');
   }
-  lucide.createIcons();
-});
 
-// Modal Controls
-function openModal() {
-  videoModal.classList.remove('hidden');
-}
-
-function closeModal() {
-  videoModal.classList.add('hidden');
-}
-
-openModalBtn.addEventListener('click', openModal);
-triggerModalSecondary.addEventListener('click', openModal);
-closeModalBtn.addEventListener('click', closeModal);
-
-// Close modal when clicking outside the card
-videoModal.addEventListener('click', (e) => {
-  if (e.target === videoModal) {
-    closeModal();
-  }
-});
-
-// Video File Upload / Drag-and-Drop Handler
-function loadVideoFile(file) {
-  if (!file || !file.type.startsWith('video/')) {
-    alert('Please upload a valid video file.');
-    return;
-  }
-
-  const fileURL = URL.createObjectURL(file);
-  bgVideo.src = fileURL;
-  bgVideo.play();
-  closeModal();
-}
-
-fileInput.addEventListener('change', (e) => {
-  if (e.target.files && e.target.files[0]) {
-    loadVideoFile(e.target.files[0]);
-  }
-});
-
-// Drag and drop event listeners
-dropZone.addEventListener('dragover', (e) => {
-  e.preventDefault();
-  dropZone.classList.add('dragover');
-});
-
-dropZone.addEventListener('dragleave', () => {
-  dropZone.classList.remove('dragover');
-});
-
-dropZone.addEventListener('drop', (e) => {
-  e.preventDefault();
-  dropZone.classList.remove('dragover');
-  if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-    loadVideoFile(e.dataTransfer.files[0]);
-  }
+  if (window.lucide) lucide.createIcons();
 });
