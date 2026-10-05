@@ -139,6 +139,7 @@
         <nav class="flex items-center gap-8 text-sm font-medium text-neutral-300">
           <a href="#services" class="hover:text-white transition">Capabilities</a>
           <a href="#about" class="hover:text-white transition">About</a>
+          <a href="#arcade" class="hover:text-white transition">Arcade</a>
           <a href="#socials" class="hover:text-white transition">Socials</a>
         </nav>
 
@@ -229,7 +230,31 @@
       </div>
     </section>
 
-    <!-- SOCIAL MEDIA HANDLES SECTION (3 Columns Desktop Layout) -->
+    <!-- SUBWAY SURFERS ARCADE SECTION -->
+    <section id="arcade" class="pb-20">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#FF4E18] block mb-2 glitch-target">Interactive Zone</span>
+          <h2 class="font-display text-4xl font-extrabold tracking-tight glitch-target">Subway Surfers Arcade</h2>
+        </div>
+        <div class="flex items-center gap-3 text-xs font-mono text-neutral-400">
+          <span class="w-2 h-2 rounded-full bg-[#FF4E18] animate-ping"></span>
+          <span>Arrow Keys / Swipe to Dodge</span>
+        </div>
+      </div>
+
+      <!-- Game Frame Container -->
+      <div class="w-full h-[680px] rounded-3xl overflow-hidden border border-neutral-800/80 bg-neutral-950 shadow-2xl relative">
+        <iframe
+          src="https://subwaysurfers.online"
+          class="w-full h-full border-0"
+          allow="autoplay; fullscreen; keyboard"
+          loading="lazy">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- SOCIAL MEDIA HANDLES SECTION -->
     <section id="socials" class="pb-24">
       <div class="mb-8">
         <span class="text-xs font-bold uppercase tracking-wider text-[#FF4E18] block mb-2 glitch-target">Connect & Follow</span>
@@ -300,7 +325,7 @@
 
     // 1. One-tap audio and video toggle
     function handleToggle(e) {
-      if (e.target.closest('a, button, [onclick]')) return;
+      if (e.target.closest('a, button, [onclick], iframe')) return;
 
       if (video.paused) {
         video.muted = false;
