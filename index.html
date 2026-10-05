@@ -95,15 +95,15 @@
     }
   </style>
 </head>
-<body class="bg-[#060608] text-white antialiased selection:bg-[#FF4E18] selection:text-white relative">
+<body class="bg-[#060608] text-white antialiased selection:bg-[#FF4E18] selection:text-white select-none relative">
 
   <!-- Spider-Verse Screen Flash & Halftone Dot Grid -->
   <div id="spiderverse-dots" class="halftone-overlay fixed inset-0 z-40 pointer-events-none"></div>
 
-  <!-- Touch to Play Audio Hint (Disappears after first interaction) -->
+  <!-- Floating Touch Indicator -->
   <div id="touch-hint" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-[#FF4E18] text-white text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full shadow-2xl flex items-center gap-2 pointer-events-none transition-all duration-500">
     <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
-    <span>Tap anywhere to enable sound</span>
+    <span>Tap anywhere to start</span>
   </div>
 
   <main id="glitch-wrapper" class="max-w-6xl mx-auto px-4 sm:px-6 py-6 transition-transform duration-75">
@@ -111,16 +111,14 @@
     <!-- HERO CARD -->
     <div class="relative w-full rounded-[2.5rem] overflow-hidden border border-neutral-800/80 bg-neutral-950 shadow-2xl min-h-[640px] md:min-h-[720px] flex flex-col justify-between">
       
-      <!-- Video Element: Plays continuously on loop, never pauses -->
+      <!-- Video Element: Starts paused, unmuted on first tap -->
       <video
         id="bg-video"
         playsinline
         webkit-playsinline
-        autoplay
-        muted
         loop
         preload="auto"
-        class="absolute inset-0 w-full h-full object-cover object-center z-0 transition-opacity duration-700 pointer-events-none">
+        class="absolute inset-0 w-full h-full object-cover object-center z-0 transition-opacity duration-700">
         <source src="VID_20261006_013742_392.mp4" type="video/mp4">
       </video>
 
@@ -230,6 +228,88 @@
     <!-- SELECTED WORKS SHOWCASE -->
     <section id="work" class="pb-24">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Project 1 -->
+        <div class="group rounded-3xl bg-neutral-900 border border-neutral-800 overflow-hidden p-3.5 transition-all duration-300 hover:border-neutral-600">
+          <div class="w-full h-80 rounded-2xl overflow-hidden bg-neutral-800">
+            <img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80" alt="Technical Outerwear" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="pt-4 pb-2 px-2 flex justify-between items-center">
+            <div>
+              <p class="text-[11px] font-mono text-[#FF4E18]">#01 Fashion & Apparel</p>
+              <h3 class="font-semibold text-base text-white mt-0.5">Vessel Parka</h3>
+            </div>
+            <span class="text-neutral-400 group-hover:text-white transition">&rarr;</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="group rounded-3xl bg-neutral-900 border border-neutral-800 overflow-hidden p-3.5 transition-all duration-300 hover:border-neutral-600">
+          <div class="w-full h-80 rounded-2xl overflow-hidden bg-neutral-800">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" alt="Acoustic Studio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="pt-4 pb-2 px-2 flex justify-between items-center">
+            <div>
+              <p class="text-[11px] font-mono text-[#FF4E18]">#02 Acoustic Hardware</p>
+              <h3 class="font-semibold text-base text-white mt-0.5">S-Series Monitors</h3>
+            </div>
+            <span class="text-neutral-400 group-hover:text-white transition">&rarr;</span>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="group rounded-3xl bg-neutral-900 border border-neutral-800 overflow-hidden p-3.5 transition-all duration-300 hover:border-neutral-600">
+          <div class="w-full h-80 rounded-2xl overflow-hidden bg-neutral-800">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" alt="Cosmetic Bottle" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="pt-4 pb-2 px-2 flex justify-between items-center">
+            <div>
+              <p class="text-[11px] font-mono text-[#FF4E18]">#03 Industrial Packaging</p>
+              <h3 class="font-semibold text-base text-white mt-0.5">Noir Essence Flacon</h3>
+            </div>
+            <span class="text-neutral-400 group-hover:text-white transition">&rarr;</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const video = document.getElementById('bg-video');
+    const touchHint = document.getElementById('touch-hint');
+
+    // 1. One-tap audio and video toggle
+    function handleToggle(e) {
+      if (e.target.closest('a, button')) return;
+
+      if (video.paused) {
+        video.muted = false;
+        video.volume = 0.9;
+        video.play().catch(err => console.log('Playback error:', err));
+        if (touchHint) {
+          touchHint.style.opacity = '0';
+          setTimeout(() => touchHint.remove(), 400);
+        }
+      } else {
+        video.pause();
+      }
+    }
+    document.addEventListener('click', handleToggle);
+
+    // 2. Spider-Verse Scroll Glitch Controller
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      document.body.classList.add('spider-glitch-active');
+
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        document.body.classList.remove('spider-glitch-active');
+      }, 140);
+    }, { passive: true });
+  </script>
+</body>
+</html>
+s-1 md:grid-cols-3 gap-6">
         <!-- Project 1 -->
         <div class="group rounded-3xl bg-neutral-900 border border-neutral-800 overflow-hidden p-3.5 transition-all duration-300 hover:border-neutral-600">
           <div class="w-full h-80 rounded-2xl overflow-hidden bg-neutral-800">
