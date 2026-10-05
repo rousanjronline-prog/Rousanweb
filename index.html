@@ -11,20 +11,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- External Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Fullscreen Video Background Container -->
+  <!-- Fullscreen Background Video -->
   <div class="video-background-wrapper">
-    <video id="bgVideo" autoplay muted loop playsinline>
-      <!-- Point this src to your downloaded video file -->
-      <source src="background.mp4" type="video/mp4" />
+    <video id="bgVideo" autoplay muted loop playsinline preload="auto">
+      <source src="VID_20261006_013742_392.mp4" type="video/mp4" />
       Your browser does not support HTML5 video.
     </video>
     <div class="video-overlay"></div>
     <div class="vignette"></div>
+  </div>
+
+  <!-- Audio Prompt Banner -->
+  <div id="audioPrompt" class="audio-prompt">
+    <span>Click anywhere to activate sound</span>
   </div>
 
   <!-- Navigation Bar -->
@@ -46,23 +49,17 @@
       <button id="audioToggleBtn" class="icon-btn glass-btn" title="Toggle Audio">
         <i data-lucide="volume-x" id="audioIcon"></i>
       </button>
-
-      <!-- Video Settings / Uploader Button -->
-      <button id="openModalBtn" class="pill-btn glass-btn">
-        <i data-lucide="video"></i>
-        <span>Change Video</span>
-      </button>
     </div>
   </header>
 
-  <!-- Main Content Container -->
+  <!-- Main Showcase Content -->
   <main class="main-content">
     
     <!-- Hero Section -->
     <section id="hero" class="hero-section">
       <div class="badge glass">
         <span class="pulse-indicator"></span>
-        <span>Visual Showcase & Portfolio</span>
+        <span>Visual Showcase</span>
       </div>
       
       <h1 class="hero-title">
@@ -76,13 +73,9 @@
 
       <div class="hero-cta-group">
         <a href="#highlights" class="btn btn-primary">
-          <span>Explore Projects</span>
+          <span>Explore Highlights</span>
           <i data-lucide="arrow-right"></i>
         </a>
-        <button id="triggerModalSecondary" class="btn btn-secondary glass">
-          <i data-lucide="upload-cloud"></i>
-          <span>Upload Video</span>
-        </button>
       </div>
     </section>
 
@@ -117,19 +110,19 @@
         <div class="feature-card glass">
           <div class="card-icon"><i data-lucide="zap"></i></div>
           <h3>Dynamic Playback</h3>
-          <p>Seamlessly scales across ultra-wide monitors, tablets, and mobile displays without black bars or letterboxing.</p>
+          <p>Seamlessly scales across ultra-wide monitors, tablets, and mobile displays without letterboxing.</p>
         </div>
 
         <div class="feature-card glass">
-          <div class="card-icon"><i data-lucide="sliders"></i></div>
-          <h3>Custom Controls</h3>
-          <p>Unmute original video audio or replace the active backdrop with any video file straight from your computer.</p>
+          <div class="card-icon"><i data-lucide="volume-2"></i></div>
+          <h3>Direct Audio Trigger</h3>
+          <p>Bypasses browser autoplay limitations by automatically initializing high-fidelity audio on first user touch.</p>
         </div>
 
         <div class="feature-card glass">
           <div class="card-icon"><i data-lucide="shield-check"></i></div>
-          <h3>Optimized Performance</h3>
-          <p>Utilizes GPU-accelerated backdrop filters and hardware-accelerated HTML5 video rendering.</p>
+          <h3>Hardware Acceleration</h3>
+          <p>Built with lightweight CSS backdrop filters and GPU-accelerated video decoding.</p>
         </div>
       </div>
     </section>
@@ -138,8 +131,8 @@
     <section id="contact" class="contact-section">
       <div class="glass contact-box">
         <h2>Let's build something epic.</h2>
-        <p>Have an idea or need a customized video-driven landing page?</p>
-        <a href="mailto:hello@example.com" class="btn btn-primary">
+        <p>Looking to collaborate or build customized media experiences?</p>
+        <a href="mailto:contact@example.com" class="btn btn-primary">
           <i data-lucide="mail"></i>
           <span>Get in Touch</span>
         </a>
@@ -148,32 +141,10 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p>© 2026 Showcase. Built with HTML, CSS & JavaScript.</p>
+      <p>© 2026 Showcase. Powered by HTML5, CSS3, & JavaScript.</p>
     </footer>
   </main>
 
-  <!-- Video Selector Modal -->
-  <div id="videoModal" class="modal-overlay hidden">
-    <div class="modal-card glass">
-      <div class="modal-header">
-        <h3>Background Video Settings</h3>
-        <button id="closeModalBtn" class="icon-btn-close">
-          <i data-lucide="x"></i>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <label class="drop-zone" id="dropZone" for="fileInput">
-          <i data-lucide="film" class="drop-icon"></i>
-          <p><strong>Click to choose a video</strong> or drag & drop</p>
-          <span>Supports MP4, WebM, MOV</span>
-          <input type="file" id="fileInput" accept="video/mp4,video/webm,video/ogg,video/quicktime" hidden />
-        </label>
-      </div>
-    </div>
-  </div>
-
-  <!-- External JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
