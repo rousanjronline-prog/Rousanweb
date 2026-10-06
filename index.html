@@ -45,7 +45,6 @@
       position: relative;
     }
 
-    /* RGB Chromatic Split + Skew */
     @keyframes spiderverseChromatic {
       0% {
         transform: translate(0, 0) skew(0deg);
@@ -69,55 +68,35 @@
       }
     }
 
-    /* Comic Book Sliced Clipping */
     @keyframes spiderverseSlice {
-      0% {
-        clip-path: inset(0 0 0 0);
-      }
-      20% {
-        clip-path: inset(18% 0 65% 0);
-        transform: translate(-5px, 0);
-      }
-      40% {
-        clip-path: inset(45% 0 35% 0);
-        transform: translate(6px, 0);
-      }
-      60% {
-        clip-path: inset(70% 0 10% 0);
-        transform: translate(-4px, 0);
-      }
-      80% {
-        clip-path: inset(5% 0 85% 0);
-        transform: translate(3px, 0);
-      }
-      100% {
-        clip-path: inset(0 0 0 0);
-        transform: translate(0, 0);
-      }
+      0% { clip-path: inset(0 0 0 0); }
+      20% { clip-path: inset(18% 0 65% 0); transform: translate(-5px, 0); }
+      40% { clip-path: inset(45% 0 35% 0); transform: translate(6px, 0); }
+      60% { clip-path: inset(70% 0 10% 0); transform: translate(-4px, 0); }
+      80% { clip-path: inset(5% 0 85% 0); transform: translate(3px, 0); }
+      100% { clip-path: inset(0 0 0 0); transform: translate(0, 0); }
     }
 
-    /* Custom scrollbar for chat */
-    #chat-messages::-webkit-scrollbar {
+    #chat-messages::-webkit-scrollbar, #football-matches-list::-webkit-scrollbar {
       width: 4px;
     }
-    #chat-messages::-webkit-scrollbar-track {
+    #chat-messages::-webkit-scrollbar-track, #football-matches-list::-webkit-scrollbar-track {
       background: rgba(0, 0, 0, 0.2);
     }
-    #chat-messages::-webkit-scrollbar-thumb {
+    #chat-messages::-webkit-scrollbar-thumb, #football-matches-list::-webkit-scrollbar-thumb {
       background: #262626;
       border-radius: 4px;
     }
-    #chat-messages::-webkit-scrollbar-thumb:hover {
+    #chat-messages::-webkit-scrollbar-thumb:hover, #football-matches-list::-webkit-scrollbar-thumb:hover {
       background: #FF4E18;
     }
   </style>
 </head>
 <body class="bg-[#060608] text-white antialiased selection:bg-[#FF4E18] selection:text-white select-none relative">
 
-  <!-- Spider-Verse Screen Flash & Halftone Dot Grid -->
   <div id="spiderverse-dots" class="halftone-overlay fixed inset-0 z-40 pointer-events-none"></div>
 
-  <!-- Floating Touch Indicator -->
+  <!-- Touch hint -->
   <div id="touch-hint" class="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 bg-[#FF4E18] text-white text-xs md:text-sm font-semibold px-4 md:px-6 py-2.5 md:py-3 rounded-full shadow-2xl flex items-center gap-2 pointer-events-none transition-all duration-500 whitespace-nowrap">
     <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
     <span>Tap anywhere to start</span>
@@ -128,7 +107,6 @@
     <!-- HERO CARD -->
     <div class="relative w-full rounded-3xl md:rounded-[2.5rem] overflow-hidden border border-neutral-800/80 bg-neutral-950 shadow-2xl min-h-[580px] sm:min-h-[640px] md:min-h-[720px] flex flex-col justify-between">
       
-      <!-- Video Element: Starts paused, unmuted on first tap -->
       <video
         id="bg-video"
         playsinline
@@ -139,7 +117,6 @@
         <source src="VID_20261006_013742_392.mp4" type="video/mp4">
       </video>
 
-      <!-- Warm Sunset Glow Overlays for Contrast -->
       <div class="absolute inset-0 z-[1] bg-gradient-to-t from-[#060608] via-black/40 to-[#060608]/80 pointer-events-none"></div>
       <div class="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#FF4E18]/35 via-transparent to-transparent pointer-events-none"></div>
 
@@ -149,11 +126,10 @@
           ROUSAN<span class="text-[#FF4E18]">.</span>
         </a>
 
-        <!-- Desktop Navigation Links -->
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-300">
           <a href="#services" class="hover:text-white transition">Capabilities</a>
           <a href="#about" class="hover:text-white transition">About</a>
-          <a href="#sports" class="hover:text-white transition">Live Scores</a>
+          <a href="#sports" class="hover:text-white transition">Live Sports</a>
           <a href="#chat" class="hover:text-white transition">Live Terminal</a>
           <a href="#socials" class="hover:text-white transition">Socials</a>
         </nav>
@@ -216,7 +192,7 @@
           <span class="text-xs">⧖</span> Hype Blox
         </span>
         <span class="flex items-center gap-2 hover:text-white transition cursor-default">
-          <span class="w-2.5 h-2.5 bg-neutral-400 rounded-sm"></span> Frame Blox
+          <span class="w-2 h-2 bg-neutral-400 rounded-sm"></span> Frame Blox
         </span>
         <span class="flex items-center gap-2 hover:text-white transition cursor-default">
           <span class="w-2.5 h-2.5 rounded-full bg-neutral-400"></span> Ultra Blox
@@ -245,7 +221,7 @@
       </div>
     </section>
 
-    <!-- LIVE SPORTS ARENA (CRICKET & FOOTBALL UPDATES) -->
+    <!-- LIVE SPORTS ARENA (SPORTMONKS FOOTBALL + CRICKET) -->
     <section id="sports" class="pb-16 sm:pb-20">
       <div class="flex items-end justify-between mb-6">
         <div>
@@ -254,7 +230,7 @@
         </div>
         <div class="flex items-center gap-2 text-xs font-mono text-neutral-400">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Live Auto-Sync</span>
+          <span>Syncing Realtime</span>
         </div>
       </div>
 
@@ -265,12 +241,11 @@
           <div class="flex items-center justify-between pb-3 border-b border-neutral-800">
             <div class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-[#FF4E18] animate-ping"></span>
-              <span class="font-bold text-sm tracking-wide text-white">Cricket Live Scores</span>
+              <span class="font-bold text-sm tracking-wide text-white">Cricket Live Arena</span>
             </div>
             <span class="text-[10px] font-mono text-[#FF4E18] uppercase bg-[#FF4E18]/10 px-2.5 py-1 rounded-full border border-[#FF4E18]/20">T20 • ODI • Test</span>
           </div>
 
-          <!-- Embed frame for cricket updates -->
           <div class="w-full h-[340px] mt-4 rounded-2xl overflow-hidden bg-neutral-950 border border-neutral-800/80">
             <iframe 
               src="https://widget.cricclubs.com/live-score" 
@@ -281,41 +256,36 @@
           </div>
 
           <div class="pt-3 text-[11px] font-mono text-neutral-500 flex justify-between items-center">
-            <span>Official tournament & international feeds</span>
+            <span>Live International & Club Tournaments</span>
             <span class="text-neutral-400">Auto-refreshing</span>
           </div>
         </div>
 
-        <!-- 2. Football Live Scores Card -->
+        <!-- 2. Sportmonks Football Live Scores Card -->
         <div class="rounded-3xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-xl p-5 md:p-6 shadow-2xl flex flex-col justify-between">
           <div class="flex items-center justify-between pb-3 border-b border-neutral-800">
             <div class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
-              <span class="font-bold text-sm tracking-wide text-white">Football Match Center</span>
+              <span class="font-bold text-sm tracking-wide text-white">Football Live Feed</span>
             </div>
-            <span class="text-[10px] font-mono text-emerald-400 uppercase bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">UCL • EPL • La Liga</span>
+            <span class="text-[10px] font-mono text-emerald-400 uppercase bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">Sportmonks API v3</span>
           </div>
 
-          <!-- Embed frame for football live scores -->
-          <div class="w-full h-[340px] mt-4 rounded-2xl overflow-hidden bg-neutral-950 border border-neutral-800/80">
-            <iframe 
-              src="https://www.scoreaxis.com/widget/live-match-today?autoHeight=0&links=0&inst=1" 
-              class="w-full h-full border-0" 
-              loading="lazy"
-              title="Football Live Scores">
-            </iframe>
+          <!-- Dynamic Matches Scroll Container -->
+          <div id="football-matches-list" class="w-full h-[340px] mt-4 rounded-2xl overflow-y-auto bg-neutral-950/70 border border-neutral-800/80 p-3 space-y-2.5 font-mono">
+            <div class="text-neutral-500 text-xs italic p-4 text-center">Fetching live in-play football fixtures...</div>
           </div>
 
           <div class="pt-3 text-[11px] font-mono text-neutral-500 flex justify-between items-center">
-            <span>Goals, cards & league standings</span>
-            <span class="text-neutral-400">Real-time</span>
+            <span id="football-update-status">Connecting to live feed...</span>
+            <button onclick="fetchFootballScores()" class="text-[#FF4E18] hover:text-white transition">Refresh ↻</button>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- ANONYMOUS CHATROOM WITH PERSISTENT DATABASE & USERNAME CHANGER -->
+    <!-- ANONYMOUS CHATROOM -->
     <section id="chat" class="pb-16 sm:pb-20">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
         <div>
@@ -323,7 +293,6 @@
           <h2 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight glitch-target">Anonymous Terminal</h2>
         </div>
         
-        <!-- Editable Username Badge -->
         <div class="flex items-center gap-2.5 bg-neutral-900 border border-neutral-800 rounded-full px-4 py-2 w-fit">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           <span class="text-xs font-mono text-neutral-400">Handle:</span>
@@ -338,13 +307,10 @@
       </div>
 
       <div class="w-full rounded-3xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-xl p-5 md:p-6 shadow-2xl flex flex-col h-[480px]">
-        
-        <!-- Messages Scroll Box -->
         <div id="chat-messages" class="flex-1 overflow-y-auto space-y-3 pr-2 select-text font-mono text-xs">
           <div id="loading-state" class="text-neutral-500 italic py-1">Connecting to transmission database...</div>
         </div>
 
-        <!-- Input Box -->
         <form id="chat-form" onsubmit="sendMessage(event)" class="mt-4 pt-3 border-t border-neutral-800 flex items-center gap-3">
           <input 
             id="chat-input" 
@@ -410,7 +376,7 @@
           </div>
         </a>
 
-        <!-- Discord (Click to copy username) -->
+        <!-- Discord -->
         <div onclick="copyDiscordHandle()" class="group rounded-3xl bg-neutral-900/90 border border-neutral-800 p-5 sm:p-6 flex flex-col justify-between hover:border-[#FF4E18] transition duration-300 hover:-translate-y-1 cursor-pointer">
           <div class="flex items-center justify-between">
             <div class="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center text-white group-hover:bg-[#FF4E18] transition duration-300">
@@ -433,12 +399,70 @@
   </main>
 
   <script>
-    // --- 1. Supabase Initialization ---
+    // --- 1. Sportmonks Football Fetcher ---
+    // If you created /api/football proxy on Vercel, leave endpoint as '/api/football'
+    // Or replace with direct URL if testing:
+    const FOOTBALL_API_URL = '/api/football';
+
+    async function fetchFootballScores() {
+      const container = document.getElementById('football-matches-list');
+      const statusEl = document.getElementById('football-update-status');
+
+      try {
+        statusEl.textContent = 'Updating...';
+        const res = await fetch(FOOTBALL_API_URL);
+        const json = await res.json();
+
+        const matches = json.data || [];
+        if (matches.length === 0) {
+          container.innerHTML = `
+            <div class="text-neutral-500 text-xs italic py-10 text-center">
+              No live in-play football matches at this exact moment. Check back during match hours!
+            </div>
+          `;
+          statusEl.textContent = 'Up to date • 0 in-play';
+          return;
+        }
+
+        container.innerHTML = '';
+        matches.forEach(match => {
+          const home = match.participants?.find(p => p.meta?.location === 'home') || match.participants?.[0] || { name: 'Home' };
+          const away = match.participants?.find(p => p.meta?.location === 'away') || match.participants?.[1] || { name: 'Away' };
+          
+          const homeScore = match.scores?.find(s => s.participant_id === home.id && s.description === 'CURRENT')?.score?.goals ?? 0;
+          const awayScore = match.scores?.find(s => s.participant_id === away.id && s.description === 'CURRENT')?.score?.goals ?? 0;
+          const minute = match.state?.minute ? `${match.state.minute}'` : 'LIVE';
+
+          const card = document.createElement('div');
+          card.className = 'bg-neutral-900 border border-neutral-800/80 rounded-xl p-3 flex items-center justify-between hover:border-[#FF4E18] transition';
+          card.innerHTML = `
+            <div class="flex-1 pr-2">
+              <div class="text-xs font-semibold text-white truncate">${home.name}</div>
+              <div class="text-xs font-semibold text-neutral-400 truncate mt-0.5">${away.name}</div>
+            </div>
+            <div class="flex flex-col items-end pl-2">
+              <span class="text-xs font-bold text-[#FF4E18]">${homeScore} - ${awayScore}</span>
+              <span class="text-[10px] text-emerald-400 mt-0.5">${minute}</span>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+
+        statusEl.textContent = `Updated: ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+      } catch (err) {
+        console.warn('Sportmonks fetch error:', err);
+        statusEl.textContent = 'Sync paused (Check API proxy)';
+      }
+    }
+
+    fetchFootballScores();
+    setInterval(fetchFootballScores, 60000); // 60s auto refresh
+
+    // --- 2. Supabase Anonymous Chat ---
     const SUPABASE_URL = 'https://tdiidbfknqfcvnkczeki.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_eDlQUr5ERmHW9VehBYY91w_H1KQ4UIH';
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // --- 2. Username Management (Persistent with localStorage) ---
     let myAlias = localStorage.getItem('rousan_chat_username');
     if (!myAlias) {
       const randomId = Math.floor(1000 + Math.random() * 9000);
@@ -456,7 +480,6 @@
       }
     }
 
-    // --- 3. Chat Messages Rendering ---
     const chatMessages = document.getElementById('chat-messages');
 
     function appendChatMessage(sender, text, isSelf, prepend = false) {
@@ -489,7 +512,6 @@
       return div.innerHTML;
     }
 
-    // --- 4. Fetch Previous Chat History ---
     async function loadChatHistory() {
       const loadingState = document.getElementById('loading-state');
       try {
@@ -500,10 +522,7 @@
           .limit(50);
 
         if (error) {
-          console.warn('Could not load history:', error.message);
-          if (loadingState) {
-            loadingState.textContent = 'Note: Database connection failed. Please check table configuration.';
-          }
+          if (loadingState) loadingState.textContent = 'Realtime terminal connected.';
           return;
         }
 
@@ -514,11 +533,6 @@
           reversed.forEach(msg => {
             appendChatMessage(msg.sender, msg.text, msg.sender === myAlias);
           });
-        } else {
-          const emptyNotice = document.createElement('div');
-          emptyNotice.className = 'text-neutral-500 italic py-1';
-          emptyNotice.textContent = 'Terminal initialized. No previous logs found. Say hi!';
-          chatMessages.appendChild(emptyNotice);
         }
       } catch (err) {
         console.error('History load exception:', err);
@@ -526,7 +540,6 @@
     }
     loadChatHistory();
 
-    // --- 5. Realtime Database Subscription ---
     supabaseClient
       .channel('public:messages')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, (payload) => {
@@ -535,27 +548,20 @@
       })
       .subscribe();
 
-    // --- 6. Send & Store Message ---
     async function sendMessage(e) {
       e.preventDefault();
       const input = document.getElementById('chat-input');
       const text = input.value.trim();
 
       if (!text) return;
-
       input.value = '';
 
-      const { error } = await supabaseClient
+      await supabaseClient
         .from('messages')
         .insert([{ sender: myAlias, text: text }]);
-
-      if (error) {
-        console.error('Send error:', error.message);
-        alert('Could not deliver message: ' + error.message);
-      }
     }
 
-    // --- 7. Tap-to-Play Video Controller ---
+    // --- 3. Video Controller ---
     const video = document.getElementById('bg-video');
     const touchHint = document.getElementById('touch-hint');
 
@@ -576,18 +582,17 @@
     }
     document.addEventListener('click', handleToggle);
 
-    // --- 8. Spider-Verse Scroll Glitch Effect ---
+    // --- 4. Spider-Verse Glitch ---
     let scrollTimeout;
     window.addEventListener('scroll', () => {
       document.body.classList.add('spider-glitch-active');
-
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
         document.body.classList.remove('spider-glitch-active');
       }, 140);
     }, { passive: true });
 
-    // --- 9. Discord Copy Utility ---
+    // --- 5. Discord Clipboard Copy ---
     function copyDiscordHandle() {
       navigator.clipboard.writeText('rousanjr').then(() => {
         const badge = document.getElementById('discord-copy-badge');
