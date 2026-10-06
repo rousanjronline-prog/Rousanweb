@@ -95,6 +95,21 @@
         transform: translate(0, 0);
       }
     }
+
+    /* Custom scrollbar for chat */
+    #chat-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+    #chat-messages::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    #chat-messages::-webkit-scrollbar-thumb {
+      background: #262626;
+      border-radius: 4px;
+    }
+    #chat-messages::-webkit-scrollbar-thumb:hover {
+      background: #FF4E18;
+    }
   </style>
 </head>
 <body class="bg-[#060608] text-white antialiased selection:bg-[#FF4E18] selection:text-white select-none relative">
@@ -200,7 +215,7 @@
           <span class="text-xs">⧖</span> Hype Blox
         </span>
         <span class="flex items-center gap-2 hover:text-white transition cursor-default">
-          <span class="w-2 h-2 bg-neutral-400 rounded-sm"></span> Frame Blox
+          <span class="w-2.5 h-2.5 bg-neutral-400 rounded-sm"></span> Frame Blox
         </span>
         <span class="flex items-center gap-2 hover:text-white transition cursor-default">
           <span class="w-2.5 h-2.5 rounded-full bg-neutral-400"></span> Ultra Blox
@@ -229,24 +244,33 @@
       </div>
     </section>
 
-    <!-- ANONYMOUS CHATROOM (LIVE SUPABASE WEBSOCKET BROADCAST) -->
+    <!-- ANONYMOUS CHATROOM WITH PERSISTENT DATABASE & USERNAME CHANGER -->
     <section id="chat" class="pb-16 sm:pb-20">
-      <div class="flex items-end justify-between mb-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-[#FF4E18] block mb-2 glitch-target">Live Network</span>
           <h2 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight glitch-target">Anonymous Terminal</h2>
         </div>
-        <div class="flex items-center gap-2 text-xs font-mono text-neutral-400">
+        
+        <!-- Editable Username Badge -->
+        <div class="flex items-center gap-2.5 bg-neutral-900 border border-neutral-800 rounded-full px-4 py-2 w-fit">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span id="user-alias">Joining...</span>
+          <span class="text-xs font-mono text-neutral-400">Handle:</span>
+          <span id="user-alias" class="text-xs font-mono font-bold text-white tracking-wide">...</span>
+          <button 
+            type="button" 
+            onclick="changeUsernamePrompt()" 
+            class="ml-1 text-[11px] font-mono text-[#FF4E18] hover:text-white underline transition">
+            Change
+          </button>
         </div>
       </div>
 
-      <div class="w-full rounded-3xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-xl p-5 md:p-6 shadow-2xl flex flex-col h-[460px]">
+      <div class="w-full rounded-3xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-xl p-5 md:p-6 shadow-2xl flex flex-col h-[480px]">
         
         <!-- Messages Scroll Box -->
         <div id="chat-messages" class="flex-1 overflow-y-auto space-y-3 pr-2 select-text font-mono text-xs">
-          <div class="text-neutral-500 italic py-1">Terminal initialized. All transmissions are anonymous & real-time.</div>
+          <div id="loading-state" class="text-neutral-500 italic py-1">Connecting to transmission database...</div>
         </div>
 
         <!-- Input Box -->
@@ -254,8 +278,8 @@
           <input 
             id="chat-input" 
             type="text" 
-            maxlength="140" 
-            placeholder="Type an anonymous broadcast..." 
+            maxlength="200" 
+            placeholder="Type a broadcast message..." 
             autocomplete="off"
             class="flex-1 bg-neutral-950 border border-neutral-800 rounded-full px-5 py-3 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#FF4E18] transition"
           >
@@ -339,59 +363,40 @@
 
   <script>
     // --- 1. Supabase Initialization ---
-    // Clean root URL without the /rest/v1/ suffix for proper WebSocket connections
     const SUPABASE_URL = 'https://tdiidbfknqfcvnkczeki.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_eDlQUr5ERmHW9VehBYY91w_H1KQ4UIH';
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // --- 2. Anonymous Alias Generator ---
-    const randomId = Math.floor(1000 + Math.random() * 9000);
-    const myAlias = `Spider#${randomId}`;
+    // --- 2. Username Management (Persistent with localStorage) ---
+    let myAlias = localStorage.getItem('rousan_chat_username');
+    if (!myAlias) {
+      const randomId = Math.floor(1000 + Math.random() * 9000);
+      myAlias = `Spider#${randomId}`;
+      localStorage.setItem('rousan_chat_username', myAlias);
+    }
     document.getElementById('user-alias').textContent = myAlias;
 
-    // --- 3. Realtime Broadcast Channel ---
-    const chatMessages = document.getElementById('chat-messages');
-    const chatChannel = supabaseClient.channel('anonymous-room', {
-      config: { broadcast: { self: true } }
-    });
-
-    chatChannel
-      .on('broadcast', { event: 'message' }, ({ payload }) => {
-        appendChatMessage(payload.sender, payload.text, payload.sender === myAlias);
-      })
-      .subscribe((status) => {
-        if (status === 'SUBSCRIBED') {
-          console.log('Connected to anonymous chatroom.');
-        }
-      });
-
-    // --- 4. Send Message Function ---
-    function sendMessage(e) {
-      e.preventDefault();
-      const input = document.getElementById('chat-input');
-      const text = input.value.trim();
-
-      if (!text) return;
-
-      chatChannel.send({
-        type: 'broadcast',
-        event: 'message',
-        payload: {
-          sender: myAlias,
-          text: text
-        }
-      });
-
-      input.value = '';
+    function changeUsernamePrompt() {
+      const newName = prompt('Enter your new username (2-20 characters):', myAlias);
+      if (newName && newName.trim().length >= 2) {
+        myAlias = newName.trim().slice(0, 20);
+        localStorage.setItem('rousan_chat_username', myAlias);
+        document.getElementById('user-alias').textContent = myAlias;
+      }
     }
 
-    function appendChatMessage(sender, text, isSelf) {
+    // --- 3. Chat Messages Rendering ---
+    const chatMessages = document.getElementById('chat-messages');
+
+    function appendChatMessage(sender, text, isSelf, prepend = false) {
       const msgDiv = document.createElement('div');
       msgDiv.className = `flex flex-col ${isSelf ? 'items-end' : 'items-start'}`;
 
       const safeText = escapeHtml(text);
+      const safeSender = escapeHtml(sender);
+
       msgDiv.innerHTML = `
-        <span class="text-[10px] text-neutral-400 mb-0.5">${sender}</span>
+        <span class="text-[10px] text-neutral-400 mb-0.5">${safeSender}</span>
         <div class="px-4 py-2 rounded-2xl max-w-[85%] sm:max-w-sm break-words ${
           isSelf ? 'bg-[#FF4E18] text-white' : 'bg-neutral-800 text-neutral-200'
         }">
@@ -399,8 +404,12 @@
         </div>
       `;
 
-      chatMessages.appendChild(msgDiv);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
+      if (prepend) {
+        chatMessages.prepend(msgDiv);
+      } else {
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
     }
 
     function escapeHtml(str) {
@@ -409,12 +418,78 @@
       return div.innerHTML;
     }
 
-    // --- 5. Tap-to-Play Video Controller ---
+    // --- 4. Fetch Previous Chat History ---
+    async function loadChatHistory() {
+      const loadingState = document.getElementById('loading-state');
+      try {
+        const { data, error } = await supabaseClient
+          .from('messages')
+          .select('id, sender, text, created_at')
+          .order('id', { ascending: false })
+          .limit(50);
+
+        if (error) {
+          console.warn('Could not load history:', error.message);
+          if (loadingState) {
+            loadingState.textContent = 'Note: Database connection failed. Please check table configuration.';
+          }
+          return;
+        }
+
+        if (loadingState) loadingState.remove();
+
+        if (data && data.length > 0) {
+          // Display in chronological order
+          const reversed = [...data].reverse();
+          reversed.forEach(msg => {
+            appendChatMessage(msg.sender, msg.text, msg.sender === myAlias);
+          });
+        } else {
+          const emptyNotice = document.createElement('div');
+          emptyNotice.className = 'text-neutral-500 italic py-1';
+          emptyNotice.textContent = 'Terminal initialized. No previous logs found. Say hi!';
+          chatMessages.appendChild(emptyNotice);
+        }
+      } catch (err) {
+        console.error('History load exception:', err);
+      }
+    }
+    loadChatHistory();
+
+    // --- 5. Realtime Database Subscription ---
+    supabaseClient
+      .channel('public:messages')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, (payload) => {
+        const newMsg = payload.new;
+        appendChatMessage(newMsg.sender, newMsg.text, newMsg.sender === myAlias);
+      })
+      .subscribe();
+
+    // --- 6. Send & Store Message ---
+    async function sendMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+
+      if (!text) return;
+
+      input.value = '';
+
+      const { error } = await supabaseClient
+        .from('messages')
+        .insert([{ sender: myAlias, text: text }]);
+
+      if (error) {
+        console.error('Send error:', error.message);
+        alert('Could not deliver message: ' + error.message);
+      }
+    }
+
+    // --- 7. Tap-to-Play Video Controller ---
     const video = document.getElementById('bg-video');
     const touchHint = document.getElementById('touch-hint');
 
     function handleToggle(e) {
-      // Don't toggle video if user is clicking links, buttons, or typing in the chatroom
       if (e.target.closest('a, button, [onclick], input, form')) return;
 
       if (video.paused) {
@@ -431,7 +506,7 @@
     }
     document.addEventListener('click', handleToggle);
 
-    // --- 6. Spider-Verse Scroll Glitch Effect ---
+    // --- 8. Spider-Verse Scroll Glitch Effect ---
     let scrollTimeout;
     window.addEventListener('scroll', () => {
       document.body.classList.add('spider-glitch-active');
@@ -442,7 +517,7 @@
       }, 140);
     }, { passive: true });
 
-    // --- 7. Discord Copy Utility ---
+    // --- 9. Discord Copy Utility ---
     function copyDiscordHandle() {
       navigator.clipboard.writeText('rousanjr').then(() => {
         const badge = document.getElementById('discord-copy-badge');
