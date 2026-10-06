@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ROUSAN PORTFOLIO</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
@@ -109,7 +110,7 @@
 
   <main id="glitch-wrapper" class="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8 transition-transform duration-75">
 
-    <!-- HERO CARD (Fluid responsive height & layout) -->
+    <!-- HERO CARD -->
     <div class="relative w-full rounded-3xl md:rounded-[2.5rem] overflow-hidden border border-neutral-800/80 bg-neutral-950 shadow-2xl min-h-[580px] sm:min-h-[640px] md:min-h-[720px] flex flex-col justify-between">
       
       <!-- Video Element: Starts paused, unmuted on first tap -->
@@ -137,6 +138,7 @@
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-300">
           <a href="#services" class="hover:text-white transition">Capabilities</a>
           <a href="#about" class="hover:text-white transition">About</a>
+          <a href="#chat" class="hover:text-white transition">Live Terminal</a>
           <a href="#socials" class="hover:text-white transition">Socials</a>
         </nav>
 
@@ -227,7 +229,50 @@
       </div>
     </section>
 
-    <!-- SOCIAL MEDIA HANDLES SECTION (1 column on mobile, 3 columns on tablet/desktop) -->
+    <!-- ANONYMOUS CHATROOM (LIVE SUPABASE WEBSOCKET BROADCAST) -->
+    <section id="chat" class="pb-16 sm:pb-20">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#FF4E18] block mb-2 glitch-target">Live Network</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight glitch-target">Anonymous Terminal</h2>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-mono text-neutral-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span id="user-alias">Joining...</span>
+        </div>
+      </div>
+
+      <div class="w-full rounded-3xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-xl p-5 md:p-6 shadow-2xl flex flex-col h-[460px]">
+        
+        <!-- Messages Scroll Box -->
+        <div id="chat-messages" class="flex-1 overflow-y-auto space-y-3 pr-2 select-text font-mono text-xs">
+          <div class="text-neutral-500 italic py-1">Terminal initialized. All transmissions are anonymous & real-time.</div>
+        </div>
+
+        <!-- Input Box -->
+        <form id="chat-form" onsubmit="sendMessage(event)" class="mt-4 pt-3 border-t border-neutral-800 flex items-center gap-3">
+          <input 
+            id="chat-input" 
+            type="text" 
+            maxlength="140" 
+            placeholder="Type an anonymous broadcast..." 
+            autocomplete="off"
+            class="flex-1 bg-neutral-950 border border-neutral-800 rounded-full px-5 py-3 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#FF4E18] transition"
+          >
+          <button 
+            type="submit" 
+            class="px-5 sm:px-6 py-3 rounded-full bg-[#FF4E18] hover:bg-[#e04313] text-white text-xs font-bold transition flex items-center gap-1.5 active:scale-95"
+          >
+            <span>Send</span>
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- SOCIAL MEDIA HANDLES SECTION -->
     <section id="socials" class="pb-16 sm:pb-24">
       <div class="mb-6 sm:mb-8">
         <span class="text-xs font-bold uppercase tracking-wider text-[#FF4E18] block mb-2 glitch-target">Connect & Follow</span>
@@ -293,12 +338,84 @@
   </main>
 
   <script>
+    // --- 1. Supabase Initialization ---
+    // Clean root URL without the /rest/v1/ suffix for proper WebSocket connections
+    const SUPABASE_URL = 'https://tdiidbfknqfcvnkczeki.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_eDlQUr5ERmHW9VehBYY91w_H1KQ4UIH';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // --- 2. Anonymous Alias Generator ---
+    const randomId = Math.floor(1000 + Math.random() * 9000);
+    const myAlias = `Spider#${randomId}`;
+    document.getElementById('user-alias').textContent = myAlias;
+
+    // --- 3. Realtime Broadcast Channel ---
+    const chatMessages = document.getElementById('chat-messages');
+    const chatChannel = supabaseClient.channel('anonymous-room', {
+      config: { broadcast: { self: true } }
+    });
+
+    chatChannel
+      .on('broadcast', { event: 'message' }, ({ payload }) => {
+        appendChatMessage(payload.sender, payload.text, payload.sender === myAlias);
+      })
+      .subscribe((status) => {
+        if (status === 'SUBSCRIBED') {
+          console.log('Connected to anonymous chatroom.');
+        }
+      });
+
+    // --- 4. Send Message Function ---
+    function sendMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+
+      if (!text) return;
+
+      chatChannel.send({
+        type: 'broadcast',
+        event: 'message',
+        payload: {
+          sender: myAlias,
+          text: text
+        }
+      });
+
+      input.value = '';
+    }
+
+    function appendChatMessage(sender, text, isSelf) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `flex flex-col ${isSelf ? 'items-end' : 'items-start'}`;
+
+      const safeText = escapeHtml(text);
+      msgDiv.innerHTML = `
+        <span class="text-[10px] text-neutral-400 mb-0.5">${sender}</span>
+        <div class="px-4 py-2 rounded-2xl max-w-[85%] sm:max-w-sm break-words ${
+          isSelf ? 'bg-[#FF4E18] text-white' : 'bg-neutral-800 text-neutral-200'
+        }">
+          ${safeText}
+        </div>
+      `;
+
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    // --- 5. Tap-to-Play Video Controller ---
     const video = document.getElementById('bg-video');
     const touchHint = document.getElementById('touch-hint');
 
-    // 1. One-tap audio and video toggle
     function handleToggle(e) {
-      if (e.target.closest('a, button, [onclick]')) return;
+      // Don't toggle video if user is clicking links, buttons, or typing in the chatroom
+      if (e.target.closest('a, button, [onclick], input, form')) return;
 
       if (video.paused) {
         video.muted = false;
@@ -314,7 +431,7 @@
     }
     document.addEventListener('click', handleToggle);
 
-    // 2. Spider-Verse Scroll Glitch Controller
+    // --- 6. Spider-Verse Scroll Glitch Effect ---
     let scrollTimeout;
     window.addEventListener('scroll', () => {
       document.body.classList.add('spider-glitch-active');
@@ -325,7 +442,7 @@
       }, 140);
     }, { passive: true });
 
-    // 3. Discord Username Copy
+    // --- 7. Discord Copy Utility ---
     function copyDiscordHandle() {
       navigator.clipboard.writeText('rousanjr').then(() => {
         const badge = document.getElementById('discord-copy-badge');
