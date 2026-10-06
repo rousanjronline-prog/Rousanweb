@@ -6,8 +6,6 @@
   <title>ROUSAN PORTFOLIO</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <!-- Three.js for procedural 3D model rendering -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
@@ -98,6 +96,7 @@
       }
     }
 
+    /* Custom scrollbar for chat */
     #chat-messages::-webkit-scrollbar {
       width: 4px;
     }
@@ -115,26 +114,21 @@
 </head>
 <body class="bg-[#060608] text-white antialiased selection:bg-[#FF4E18] selection:text-white select-none relative">
 
-  <!-- Interactive 3D Gun Canvas Overlay -->
-  <div id="gun-viewport-container" class="fixed inset-0 z-30 pointer-events-none opacity-0 transition-opacity duration-500">
-    <canvas id="gun-canvas" class="w-full h-full"></canvas>
-  </div>
-
   <!-- Spider-Verse Screen Flash & Halftone Dot Grid -->
   <div id="spiderverse-dots" class="halftone-overlay fixed inset-0 z-40 pointer-events-none"></div>
 
   <!-- Floating Touch Indicator -->
   <div id="touch-hint" class="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 bg-[#FF4E18] text-white text-xs md:text-sm font-semibold px-4 md:px-6 py-2.5 md:py-3 rounded-full shadow-2xl flex items-center gap-2 pointer-events-none transition-all duration-500 whitespace-nowrap">
     <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
-    <span>Tap anywhere to start sound</span>
+    <span>Tap anywhere to start</span>
   </div>
 
-  <main id="glitch-wrapper" class="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8 transition-transform duration-75 relative z-10">
+  <main id="glitch-wrapper" class="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8 transition-transform duration-75">
 
     <!-- HERO CARD -->
     <div class="relative w-full rounded-3xl md:rounded-[2.5rem] overflow-hidden border border-neutral-800/80 bg-neutral-950 shadow-2xl min-h-[580px] sm:min-h-[640px] md:min-h-[720px] flex flex-col justify-between">
       
-      <!-- Background Video -->
+      <!-- Video Element: Starts paused, unmuted on first tap -->
       <video
         id="bg-video"
         playsinline
@@ -145,7 +139,7 @@
         <source src="VID_20261006_013742_392.mp4" type="video/mp4">
       </video>
 
-      <!-- Contrast Overlays -->
+      <!-- Warm Sunset Glow Overlays for Contrast -->
       <div class="absolute inset-0 z-[1] bg-gradient-to-t from-[#060608] via-black/40 to-[#060608]/80 pointer-events-none"></div>
       <div class="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#FF4E18]/35 via-transparent to-transparent pointer-events-none"></div>
 
@@ -221,9 +215,143 @@
           <span class="text-xs">⧖</span> Hype Blox
         </span>
         <span class="flex items-center gap-2 hover:text-white transition cursor-default">
-          <span class="w-2 h-2 bg-neutral-400 rounded-sm"></span> Frame Blox
+          <span class="w-2.5 h-2.5 bg-neutral-400 rounded-sm"></span> Frame Blox
         </span>
         <span class="flex items-center gap-2 hover:text-white transition cursor-default">
+          <span class="w-2.5 h-2.5 rounded-full bg-neutral-400"></span> Ultra Blox
+        </span>
+      </div>
+    </div>
+
+    <!-- BEHIND THE DESIGNS / INTRO -->
+    <section id="about" class="py-12 sm:py-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div>
+        <span class="text-[#FF4E18] text-xs font-bold uppercase tracking-wider block mb-2 glitch-target">Behind the Designs</span>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight glitch-target">
+          Shaping Experiences That Make Life Simpler
+        </h2>
+      </div>
+      <div>
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed mb-6">
+          I'm a designer and art director focused on building clean, intuitive visual systems and digital interfaces that solve real-world problems.
+        </p>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
+          <span class="text-xs font-mono text-neutral-400">Let's Build Something Meaningful Together</span>
+          <a href="mailto:contact@rousan.com" class="w-fit px-5 sm:px-6 py-2.5 rounded-full bg-[#FF4E18] hover:bg-[#e04313] text-white text-xs sm:text-sm font-bold transition">
+            Get in touch &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANONYMOUS CHATROOM WITH PERSISTENT DATABASE & USERNAME CHANGER -->
+    <section id="chat" class="pb-16 sm:pb-20">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#FF4E18] block mb-2 glitch-target">Live Network</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight glitch-target">Anonymous Terminal</h2>
+        </div>
+        
+        <!-- Editable Username Badge -->
+        <div class="flex items-center gap-2.5 bg-neutral-900 border border-neutral-800 rounded-full px-4 py-2 w-fit">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-xs font-mono text-neutral-400">Handle:</span>
+          <span id="user-alias" class="text-xs font-mono font-bold text-white tracking-wide">...</span>
+          <button 
+            type="button" 
+            onclick="changeUsernamePrompt()" 
+            class="ml-1 text-[11px] font-mono text-[#FF4E18] hover:text-white underline transition">
+            Change
+          </button>
+        </div>
+      </div>
+
+      <div class="w-full rounded-3xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-xl p-5 md:p-6 shadow-2xl flex flex-col h-[480px]">
+        
+        <!-- Messages Scroll Box -->
+        <div id="chat-messages" class="flex-1 overflow-y-auto space-y-3 pr-2 select-text font-mono text-xs">
+          <div id="loading-state" class="text-neutral-500 italic py-1">Connecting to transmission database...</div>
+        </div>
+
+        <!-- Input Box -->
+        <form id="chat-form" onsubmit="sendMessage(event)" class="mt-4 pt-3 border-t border-neutral-800 flex items-center gap-3">
+          <input 
+            id="chat-input" 
+            type="text" 
+            maxlength="200" 
+            placeholder="Type a broadcast message..." 
+            autocomplete="off"
+            class="flex-1 bg-neutral-950 border border-neutral-800 rounded-full px-5 py-3 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#FF4E18] transition"
+          >
+          <button 
+            type="submit" 
+            class="px-5 sm:px-6 py-3 rounded-full bg-[#FF4E18] hover:bg-[#e04313] text-white text-xs font-bold transition flex items-center gap-1.5 active:scale-95"
+          >
+            <span>Send</span>
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- SOCIAL MEDIA HANDLES SECTION -->
+    <section id="socials" class="pb-16 sm:pb-24">
+      <div class="mb-6 sm:mb-8">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#FF4E18] block mb-2 glitch-target">Connect & Follow</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight glitch-target">Direct Channels</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+        
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/rousan_jr__?stkn=cDFqbXRydWYyNHMx" target="_blank" rel="noopener noreferrer" class="group rounded-3xl bg-neutral-900/90 border border-neutral-800 p-5 sm:p-6 flex flex-col justify-between hover:border-[#FF4E18] transition duration-300 hover:-translate-y-1">
+          <div class="flex items-center justify-between">
+            <div class="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center text-white group-hover:bg-[#FF4E18] transition duration-300">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </div>
+            <span class="text-neutral-500 group-hover:text-white transition">&rarr;</span>
+          </div>
+          <div class="mt-6 sm:mt-8">
+            <span class="text-[11px] font-mono text-[#FF4E18]">@rousan_jr__</span>
+            <h3 class="font-bold text-lg text-white mt-1">Instagram</h3>
+            <p class="text-xs text-neutral-400 mt-1">Direct link to profile & reels</p>
+          </div>
+        </a>
+
+        <!-- Telegram -->
+        <a href="https://t.me/Rousanjr" target="_blank" rel="noopener noreferrer" class="group rounded-3xl bg-neutral-900/90 border border-neutral-800 p-5 sm:p-6 flex flex-col justify-between hover:border-[#FF4E18] transition duration-300 hover:-translate-y-1">
+          <div class="flex items-center justify-between">
+            <div class="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center text-white group-hover:bg-[#FF4E18] transition duration-300">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.197 1.006.128.828.946z"/>
+              </svg>
+            </div>
+            <span class="text-neutral-500 group-hover:text-white transition">&rarr;</span>
+          </div>
+          <div class="mt-6 sm:mt-8">
+            <span class="text-[11px] font-mono text-[#FF4E18]">t.me/Rousanjr</span>
+            <h3 class="font-bold text-lg text-white mt-1">Telegram</h3>
+            <p class="text-xs text-neutral-400 mt-1">Instant messaging & direct chat</p>
+          </div>
+        </a>
+
+        <!-- Discord (Click to copy username) -->
+        <div onclick="copyDiscordHandle()" class="group rounded-3xl bg-neutral-900/90 border border-neutral-800 p-5 sm:p-6 flex flex-col justify-between hover:border-[#FF4E18] transition duration-300 hover:-translate-y-1 cursor-pointer">
+          <div class="flex items-center justify-between">
+            <div class="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center text-white group-hover:bg-[#FF4E18] transition duration-300">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942.021-.0416.001-.0916-.0417-.1073-.6541-.2482-1.279-.5488-1.8722-.8922-.0477-.028-.0514-.0957-.0074-.1282.1256-.0943.2512-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1206.0991.2462.1981.3728.2924.044.0325.0413.1002-.0064.1282-.5932.3434-1.2181.644-1.8732.8922-.0427.0157-.0627.0657-.0417.1073.353.699.7644 1.3638 1.226 1.9942a.076.076 0 00.0841.0286c1.961-.6066 3.9495-1.5218 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.33c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/>
+              </svg>
+            </div>
+            <span id="discord-copy-badge" class="text-[11px] font-mono text-neutral-400 border border-neutral-700 rounded-full px-2.5 py-1 group-hover:border-[#FF4E18] group-hover:text-white transition">Copy Tag</span>
+          </div>
+          <div class="mt-6 sm:mt-8">
+            <span class="text-[11px] font-mono text-[#FF4E18]">rousanjr</span>
+            <h3 clasransition cursor-default">
           <span class="w-2.5 h-2.5 rounded-full bg-neutral-400"></span> Ultra Blox
         </span>
       </div>
