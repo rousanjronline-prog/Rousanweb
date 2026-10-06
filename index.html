@@ -351,140 +351,6 @@
           </div>
           <div class="mt-6 sm:mt-8">
             <span class="text-[11px] font-mono text-[#FF4E18]">rousanjr</span>
-            <h3 clasransition cursor-default">
-          <span class="w-2.5 h-2.5 rounded-full bg-neutral-400"></span> Ultra Blox
-        </span>
-      </div>
-    </div>
-
-    <!-- BEHIND THE DESIGNS / INTRO -->
-    <section id="about" class="py-12 sm:py-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-      <div>
-        <span class="text-[#FF4E18] text-xs font-bold uppercase tracking-wider block mb-2 glitch-target">Behind the Designs</span>
-        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight glitch-target">
-          Shaping Experiences That Make Life Simpler
-        </h2>
-      </div>
-      <div>
-        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed mb-6">
-          I'm a designer and art director focused on building clean, intuitive visual systems and digital interfaces that solve real-world problems.
-        </p>
-        <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
-          <span class="text-xs font-mono text-neutral-400">Let's Build Something Meaningful Together</span>
-          <a href="mailto:contact@rousan.com" class="w-fit px-5 sm:px-6 py-2.5 rounded-full bg-[#FF4E18] hover:bg-[#e04313] text-white text-xs sm:text-sm font-bold transition">
-            Get in touch &rarr;
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ANONYMOUS CHATROOM WITH PERSISTENT DATABASE & USERNAME CHANGER -->
-    <section id="chat" class="pb-16 sm:pb-20">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-[#FF4E18] block mb-2 glitch-target">Live Network</span>
-          <h2 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight glitch-target">Anonymous Terminal</h2>
-        </div>
-        
-        <!-- Editable Username Badge -->
-        <div class="flex items-center gap-2.5 bg-neutral-900 border border-neutral-800 rounded-full px-4 py-2 w-fit">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span class="text-xs font-mono text-neutral-400">Handle:</span>
-          <span id="user-alias" class="text-xs font-mono font-bold text-white tracking-wide">...</span>
-          <button 
-            type="button" 
-            onclick="changeUsernamePrompt()" 
-            class="ml-1 text-[11px] font-mono text-[#FF4E18] hover:text-white underline transition">
-            Change
-          </button>
-        </div>
-      </div>
-
-      <div class="w-full rounded-3xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-xl p-5 md:p-6 shadow-2xl flex flex-col h-[480px]">
-        
-        <!-- Messages Scroll Box -->
-        <div id="chat-messages" class="flex-1 overflow-y-auto space-y-3 pr-2 select-text font-mono text-xs">
-          <div id="loading-state" class="text-neutral-500 italic py-1">Connecting to transmission database...</div>
-        </div>
-
-        <!-- Input Box -->
-        <form id="chat-form" onsubmit="sendMessage(event)" class="mt-4 pt-3 border-t border-neutral-800 flex items-center gap-3">
-          <input 
-            id="chat-input" 
-            type="text" 
-            maxlength="200" 
-            placeholder="Type a broadcast message..." 
-            autocomplete="off"
-            class="flex-1 bg-neutral-950 border border-neutral-800 rounded-full px-5 py-3 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#FF4E18] transition"
-          >
-          <button 
-            type="submit" 
-            class="px-5 sm:px-6 py-3 rounded-full bg-[#FF4E18] hover:bg-[#e04313] text-white text-xs font-bold transition flex items-center gap-1.5 active:scale-95"
-          >
-            <span>Send</span>
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-            </svg>
-          </button>
-        </form>
-      </div>
-    </section>
-
-    <!-- SOCIAL MEDIA HANDLES SECTION -->
-    <section id="socials" class="pb-16 sm:pb-24">
-      <div class="mb-6 sm:mb-8">
-        <span class="text-xs font-bold uppercase tracking-wider text-[#FF4E18] block mb-2 glitch-target">Connect & Follow</span>
-        <h2 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight glitch-target">Direct Channels</h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
-        
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/rousan_jr__?stkn=cDFqbXRydWYyNHMx" target="_blank" rel="noopener noreferrer" class="group rounded-3xl bg-neutral-900/90 border border-neutral-800 p-5 sm:p-6 flex flex-col justify-between hover:border-[#FF4E18] transition duration-300 hover:-translate-y-1">
-          <div class="flex items-center justify-between">
-            <div class="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center text-white group-hover:bg-[#FF4E18] transition duration-300">
-              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-            </div>
-            <span class="text-neutral-500 group-hover:text-white transition">&rarr;</span>
-          </div>
-          <div class="mt-6 sm:mt-8">
-            <span class="text-[11px] font-mono text-[#FF4E18]">@rousan_jr__</span>
-            <h3 class="font-bold text-lg text-white mt-1">Instagram</h3>
-            <p class="text-xs text-neutral-400 mt-1">Direct link to profile & reels</p>
-          </div>
-        </a>
-
-        <!-- Telegram -->
-        <a href="https://t.me/Rousanjr" target="_blank" rel="noopener noreferrer" class="group rounded-3xl bg-neutral-900/90 border border-neutral-800 p-5 sm:p-6 flex flex-col justify-between hover:border-[#FF4E18] transition duration-300 hover:-translate-y-1">
-          <div class="flex items-center justify-between">
-            <div class="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center text-white group-hover:bg-[#FF4E18] transition duration-300">
-              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.197 1.006.128.828.946z"/>
-              </svg>
-            </div>
-            <span class="text-neutral-500 group-hover:text-white transition">&rarr;</span>
-          </div>
-          <div class="mt-6 sm:mt-8">
-            <span class="text-[11px] font-mono text-[#FF4E18]">t.me/Rousanjr</span>
-            <h3 class="font-bold text-lg text-white mt-1">Telegram</h3>
-            <p class="text-xs text-neutral-400 mt-1">Instant messaging & direct chat</p>
-          </div>
-        </a>
-
-        <!-- Discord (Click to copy username) -->
-        <div onclick="copyDiscordHandle()" class="group rounded-3xl bg-neutral-900/90 border border-neutral-800 p-5 sm:p-6 flex flex-col justify-between hover:border-[#FF4E18] transition duration-300 hover:-translate-y-1 cursor-pointer">
-          <div class="flex items-center justify-between">
-            <div class="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center text-white group-hover:bg-[#FF4E18] transition duration-300">
-              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942.021-.0416.001-.0916-.0417-.1073-.6541-.2482-1.279-.5488-1.8722-.8922-.0477-.028-.0514-.0957-.0074-.1282.1256-.0943.2512-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1206.0991.2462.1981.3728.2924.044.0325.0413.1002-.0064.1282-.5932.3434-1.2181.644-1.8732.8922-.0427.0157-.0627.0657-.0417.1073.353.699.7644 1.3638 1.226 1.9942a.076.076 0 00.0841.0286c1.961-.6066 3.9495-1.5218 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.33c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/>
-              </svg>
-            </div>
-            <span id="discord-copy-badge" class="text-[11px] font-mono text-neutral-400 border border-neutral-700 rounded-full px-2.5 py-1 group-hover:border-[#FF4E18] group-hover:text-white transition">Copy Tag</span>
-          </div>
-          <div class="mt-6 sm:mt-8">
-            <span class="text-[11px] font-mono text-[#FF4E18]">rousanjr</span>
             <h3 class="font-bold text-lg text-white mt-1">Discord</h3>
             <p class="text-xs text-neutral-400 mt-1">Click to copy username to clipboard</p>
           </div>
@@ -496,259 +362,12 @@
   </main>
 
   <script>
-    // ==========================================
-    // 1. THREE.JS PROCEDURAL 3D GUN & SHOOT LOGIC
-    // ==========================================
-    const gunContainer = document.getElementById('gun-viewport-container');
-    const gunCanvas = document.getElementById('gun-canvas');
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
-    camera.position.set(0, 0, 8);
-
-    const renderer = new THREE.WebGLRenderer({ canvas: gunCanvas, alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-    scene.add(ambientLight);
-
-    const orangeKeyLight = new THREE.PointLight(0xff4e18, 3, 20);
-    orangeKeyLight.position.set(4, 4, 5);
-    scene.add(orangeKeyLight);
-
-    const cyanRimLight = new THREE.PointLight(0x00ffff, 2, 20);
-    cyanRimLight.position.set(-4, -2, -3);
-    scene.add(cyanRimLight);
-
-    // Build Sci-Fi Pistol / Blaster Group
-    const gunPivot = new THREE.Group();
-    scene.add(gunPivot);
-
-    const darkMetalMat = new THREE.MeshStandardMaterial({
-      color: 0x111116,
-      roughness: 0.25,
-      metalness: 0.85
-    });
-
-    const emberAccentMat = new THREE.MeshStandardMaterial({
-      color: 0xff4e18,
-      emissive: 0xff4e18,
-      emissiveIntensity: 0.6,
-      roughness: 0.2,
-      metalness: 0.5
-    });
-
-    const chromeMat = new THREE.MeshStandardMaterial({
-      color: 0x888899,
-      roughness: 0.15,
-      metalness: 0.95
-    });
-
-    // Gun Upper Slide
-    const slideGeom = new THREE.BoxGeometry(0.7, 0.65, 3.2);
-    const slide = new THREE.Mesh(slideGeom, darkMetalMat);
-    slide.position.set(0, 0.6, 0);
-    gunPivot.add(slide);
-
-    // Slide Accent Top Rail
-    const railGeom = new THREE.BoxGeometry(0.35, 0.15, 3.0);
-    const rail = new THREE.Mesh(railGeom, emberAccentMat);
-    rail.position.set(0, 0.95, 0);
-    gunPivot.add(rail);
-
-    // Dual Barrels
-    const barrelGeom = new THREE.CylinderGeometry(0.12, 0.12, 1.2, 16);
-    barrelGeom.rotateX(Math.PI / 2);
-    const barrel = new THREE.Mesh(barrelGeom, chromeMat);
-    barrel.position.set(0, 0.58, 1.8);
-    gunPivot.add(barrel);
-
-    // Grip Handle
-    const gripGeom = new THREE.BoxGeometry(0.55, 1.5, 0.7);
-    const grip = new THREE.Mesh(gripGeom, darkMetalMat);
-    grip.position.set(0, -0.4, -0.6);
-    grip.rotation.x = -Math.PI / 10;
-    gunPivot.add(grip);
-
-    // Grip Ember Plate
-    const gripPlateGeom = new THREE.BoxGeometry(0.58, 1.0, 0.4);
-    const gripPlate = new THREE.Mesh(gripPlateGeom, emberAccentMat);
-    gripPlate.position.set(0, -0.45, -0.6);
-    gripPlate.rotation.x = -Math.PI / 10;
-    gunPivot.add(gripPlate);
-
-    // Trigger Guard
-    const guardGeom = new THREE.TorusGeometry(0.3, 0.05, 8, 20, Math.PI);
-    const guard = new THREE.Mesh(guardGeom, chromeMat);
-    guard.rotation.y = Math.PI / 2;
-    guard.position.set(0, -0.1, -0.1);
-    gunPivot.add(guard);
-
-    // Muzzle flash particle mesh
-    const flashGeom = new THREE.SphereGeometry(0.55, 16, 16);
-    const flashMat = new THREE.MeshBasicMaterial({ color: 0xffe600, transparent: true, opacity: 0 });
-    const muzzleFlash = new THREE.Mesh(flashGeom, flashMat);
-    muzzleFlash.position.set(0, 0.58, 2.6);
-    gunPivot.add(muzzleFlash);
-
-    // Energy bullet projectile
-    const bulletGeom = new THREE.CylinderGeometry(0.08, 0.08, 1.2, 12);
-    bulletGeom.rotateX(Math.PI / 2);
-    const bulletMat = new THREE.MeshBasicMaterial({ color: 0xff4e18, transparent: true, opacity: 0 });
-    const bullet = new THREE.Mesh(bulletGeom, bulletMat);
-    scene.add(bullet);
-
-    // Position gun at center foreground
-    gunPivot.position.set(0, -0.5, 3.6);
-    gunPivot.scale.set(0.001, 0.001, 0.001); // invisible at first
-
-    // Responsive resize
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    // Sound Generator (Web Audio API synthetic gunshot sound)
-    let audioCtx = null;
-    function playLaserShotSound() {
-      try {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-
-        const osc = audioCtx.createOscillator();
-        const gainNode = audioCtx.createGain();
-
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(880, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(45, audioCtx.currentTime + 0.18);
-
-        gainNode.gain.setValueAtTime(0.4, audioCtx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.22);
-
-        osc.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.22);
-      } catch (err) {
-        // audio muted or locked until user gesture
-      }
-    }
-
-    // Scroll tracking variables
-    let isScrolling = false;
-    let scrollStopTimer = null;
-    let lastScrollY = window.scrollY;
-    let targetRotX = 0;
-    let targetRotY = 0;
-    let targetRotZ = 0;
-    let recoilZ = 0;
-    let isShooting = false;
-    let bulletSpeed = 0;
-
-    function triggerShoot() {
-      if (isShooting) return;
-      isShooting = true;
-
-      // Align straight ahead for the shot
-      targetRotX = 0;
-      targetRotY = Math.PI; // Face front barrel forward towards viewer
-      targetRotZ = 0;
-
-      // Recoil kick back
-      recoilZ = -0.8;
-
-      // Muzzle Flash
-      muzzleFlash.material.opacity = 1;
-
-      // Launch bullet towards camera
-      bullet.position.set(gunPivot.position.x, gunPivot.position.y + 0.58, gunPivot.position.z + 1.2);
-      bullet.material.opacity = 1;
-      bulletSpeed = 0.55;
-
-      // Play audio blast
-      playLaserShotSound();
-
-      setTimeout(() => {
-        muzzleFlash.material.opacity = 0;
-      }, 70);
-
-      setTimeout(() => {
-        isShooting = false;
-      }, 400);
-    }
-
-    window.addEventListener('scroll', () => {
-      const deltaY = window.scrollY - lastScrollY;
-      lastScrollY = window.scrollY;
-
-      isScrolling = true;
-      gunContainer.style.opacity = '1';
-
-      // Rotate X, Y, Z continuously with scroll momentum
-      targetRotX += deltaY * 0.008;
-      targetRotY += deltaY * 0.014;
-      targetRotZ += deltaY * 0.006;
-
-      clearTimeout(scrollStopTimer);
-      scrollStopTimer = setTimeout(() => {
-        isScrolling = false;
-        // Trigger forward gunshot when user stops scrolling
-        triggerShoot();
-      }, 160);
-    }, { passive: true });
-
-    // Animation Loop
-    function animateGun() {
-      requestAnimationFrame(animateGun);
-
-      // Smooth gun entrance scale when page has been scrolled
-      const targetScale = window.scrollY > 20 ? 1 : 0.001;
-      gunPivot.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
-
-      // Lerp rotation to target
-      if (isScrolling) {
-        gunPivot.rotation.x += (targetRotX - gunPivot.rotation.x) * 0.15;
-        gunPivot.rotation.y += (targetRotY - gunPivot.rotation.y) * 0.15;
-        gunPivot.rotation.z += (targetRotZ - gunPivot.rotation.z) * 0.15;
-      } else {
-        // Return to aim position (straight ahead toward screen)
-        gunPivot.rotation.x += (0 - gunPivot.rotation.x) * 0.2;
-        gunPivot.rotation.y += (Math.PI - gunPivot.rotation.y) * 0.2;
-        gunPivot.rotation.z += (0 - gunPivot.rotation.z) * 0.2;
-      }
-
-      // Smooth recoil recovery
-      recoilZ += (0 - recoilZ) * 0.15;
-      gunPivot.position.z = 3.6 + recoilZ;
-
-      // Bullet fly forward logic
-      if (bullet.material.opacity > 0) {
-        bullet.position.z += bulletSpeed;
-        bulletSpeed += 0.05;
-        if (bullet.position.z > 9) {
-          bullet.material.opacity = 0;
-        }
-      }
-
-      renderer.render(scene, camera);
-    }
-    animateGun();
-
-    // ==========================================
-    // 2. SUPABASE INITIALIZATION & CHATROOM
-    // ==========================================
+    // --- 1. Supabase Initialization ---
     const SUPABASE_URL = 'https://tdiidbfknqfcvnkczeki.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_eDlQUr5ERmHW9VehBYY91w_H1KQ4UIH';
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+    // --- 2. Username Management (Persistent with localStorage) ---
     let myAlias = localStorage.getItem('rousan_chat_username');
     if (!myAlias) {
       const randomId = Math.floor(1000 + Math.random() * 9000);
@@ -766,6 +385,7 @@
       }
     }
 
+    // --- 3. Chat Messages Rendering ---
     const chatMessages = document.getElementById('chat-messages');
 
     function appendChatMessage(sender, text, isSelf, prepend = false) {
@@ -798,6 +418,7 @@
       return div.innerHTML;
     }
 
+    // --- 4. Fetch Previous Chat History ---
     async function loadChatHistory() {
       const loadingState = document.getElementById('loading-state');
       try {
@@ -808,17 +429,26 @@
           .limit(50);
 
         if (error) {
-          if (loadingState) loadingState.textContent = 'Realtime terminal connected.';
+          console.warn('Could not load history:', error.message);
+          if (loadingState) {
+            loadingState.textContent = 'Note: Database connection failed. Please check table configuration.';
+          }
           return;
         }
 
         if (loadingState) loadingState.remove();
 
         if (data && data.length > 0) {
+          // Display in chronological order
           const reversed = [...data].reverse();
           reversed.forEach(msg => {
             appendChatMessage(msg.sender, msg.text, msg.sender === myAlias);
           });
+        } else {
+          const emptyNotice = document.createElement('div');
+          emptyNotice.className = 'text-neutral-500 italic py-1';
+          emptyNotice.textContent = 'Terminal initialized. No previous logs found. Say hi!';
+          chatMessages.appendChild(emptyNotice);
         }
       } catch (err) {
         console.error('History load exception:', err);
@@ -826,6 +456,7 @@
     }
     loadChatHistory();
 
+    // --- 5. Realtime Database Subscription ---
     supabaseClient
       .channel('public:messages')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, (payload) => {
@@ -834,31 +465,31 @@
       })
       .subscribe();
 
+    // --- 6. Send & Store Message ---
     async function sendMessage(e) {
       e.preventDefault();
       const input = document.getElementById('chat-input');
       const text = input.value.trim();
 
       if (!text) return;
+
       input.value = '';
 
-      await supabaseClient
+      const { error } = await supabaseClient
         .from('messages')
         .insert([{ sender: myAlias, text: text }]);
+
+      if (error) {
+        console.error('Send error:', error.message);
+        alert('Could not deliver message: ' + error.message);
+      }
     }
 
-    // ==========================================
-    // 3. VIDEO CONTROLLER & AUDIO PERMISSION
-    // ==========================================
+    // --- 7. Tap-to-Play Video Controller ---
     const video = document.getElementById('bg-video');
     const touchHint = document.getElementById('touch-hint');
 
     function handleToggle(e) {
-      // Initialize audio context on first user tap
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-
       if (e.target.closest('a, button, [onclick], input, form')) return;
 
       if (video.paused) {
@@ -875,21 +506,18 @@
     }
     document.addEventListener('click', handleToggle);
 
-    // ==========================================
-    // 4. SPIDER-VERSE SCROLL GLITCH EFFECT
-    // ==========================================
+    // --- 8. Spider-Verse Scroll Glitch Effect ---
     let scrollTimeout;
     window.addEventListener('scroll', () => {
       document.body.classList.add('spider-glitch-active');
+
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
         document.body.classList.remove('spider-glitch-active');
       }, 140);
     }, { passive: true });
 
-    // ==========================================
-    // 5. DISCORD CLIPBOARD COPY
-    // ==========================================
+    // --- 9. Discord Copy Utility ---
     function copyDiscordHandle() {
       navigator.clipboard.writeText('rousanjr').then(() => {
         const badge = document.getElementById('discord-copy-badge');
